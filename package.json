@@ -1,0 +1,42 @@
+{
+  "name": "nexflow-smf-public",
+  "version": "1.0.0",
+  "description": "NexFlow Smart Meta-Facilitator - Open-source atomic batch settlement for x402 payments on Base",
+  "private": true,
+  "workspaces": [
+    "sdk"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace=sdk",
+    "typecheck": "npm run typecheck --workspace=sdk",
+    "clean": "npm run clean --workspace=sdk",
+    "example:settlement": "npx tsx examples/basic-settlement.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moejeaux/nexflow-smf-public.git"
+  },
+  "keywords": [
+    "x402",
+    "payments",
+    "base",
+    "ethereum",
+    "settlement",
+    "micropayments",
+    "facilitator",
+    "crypto"
+  ],
+  "author": "NexFlow",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/moejeaux/nexflow-smf-public/issues"
+  },
+  "homepage": "https://github.com/moejeaux/nexflow-smf-public#readme",
+  "devDependencies": {
+    "tsx": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
+

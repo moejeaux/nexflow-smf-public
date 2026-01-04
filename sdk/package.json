@@ -37,11 +37,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/moejeaux/nexflow"
+    "url": "https://github.com/moejeaux/nexflow-smf-public"
   },
-  "homepage": "https://nexflowapp.app/docs/sdk-smf",
+  "homepage": "https://github.com/moejeaux/nexflow-smf-public#readme",
   "bugs": {
-    "url": "https://github.com/moejeaux/nexflow/issues"
+    "url": "https://github.com/moejeaux/nexflow-smf-public/issues"
   },
   "engines": {
     "node": ">=18.0.0"
