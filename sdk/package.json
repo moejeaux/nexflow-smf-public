@@ -1,0 +1,55 @@
+{
+  "name": "@nexflow/smf",
+  "version": "1.0.0",
+  "description": "NexFlow Smart Meta-Facilitator SDK for x402 payments - zero dependencies",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "package.json"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts --clean",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "x402",
+    "payments",
+    "facilitator",
+    "sdk",
+    "nexflow",
+    "crypto",
+    "micropayments",
+    "batch-settlement"
+  ],
+  "author": "NexFlow",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/moejeaux/nexflow"
+  },
+  "homepage": "https://nexflowapp.app/docs/sdk-smf",
+  "bugs": {
+    "url": "https://github.com/moejeaux/nexflow/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "tsup": "^8.0.0",
+    "@types/node": "^20.0.0"
+  }
+}
+
