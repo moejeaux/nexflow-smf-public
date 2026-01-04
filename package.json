@@ -10,7 +10,8 @@
     "build": "npm run build --workspace=sdk",
     "typecheck": "npm run typecheck --workspace=sdk",
     "clean": "npm run clean --workspace=sdk",
-    "example:settlement": "npx tsx examples/basic-settlement.ts"
+    "example:settlement": "npx tsx examples/basic-settlement.ts",
+    "sign": "npx tsx scripts/sign-message.ts"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,9 @@
     "url": "https://github.com/moejeaux/nexflow-smf-public/issues"
   },
   "homepage": "https://github.com/moejeaux/nexflow-smf-public#readme",
+  "dependencies": {
+    "viem": "^2.0.0"
+  },
   "devDependencies": {
     "tsx": "^4.0.0"
   },
