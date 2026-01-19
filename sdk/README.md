@@ -1,6 +1,4 @@
-# @nexflow/smf
-
-Zero-dependency SDK for **NexFlow Smart Meta-Facilitator (SMF)**.
+\r\n> **Note:** The package name is @nexflow/smf, but it is **not yet published on npm**. Install from GitHub for now.\r\n\r\nZero-dependency SDK for **NexFlow Smart Meta-Facilitator (SMF)**.
 
 Route x402 payments to the best facilitator, verify payment intents, and settle batches—all with a single line of code.
 
@@ -16,11 +14,11 @@ Route x402 payments to the best facilitator, verify payment intents, and settle 
 ## Installation
 
 ```bash
-npm install @nexflow/smf
+npm install github:moejeaux/nexflow-smf-public#sdk
 # or
-yarn add @nexflow/smf
+yarn add github:moejeaux/nexflow-smf-public#sdk
 # or
-pnpm add @nexflow/smf
+pnpm add github:moejeaux/nexflow-smf-public#sdk
 ```
 
 ## Quick Start

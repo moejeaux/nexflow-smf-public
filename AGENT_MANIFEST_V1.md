@@ -56,7 +56,7 @@ This document defines the **Agent Manifest v1** specification for NexFlow's Smar
     "primaryNetwork": "base",
     "primaryToken": "USDC",
     "settlementContract": "0x43A04228152115fDd5663B2Aa559Ebd84D17A49D",
-    "sdkPackage": "@nexflow/smf"
+    "sdk": {\n    "packageName": "@nexflow/smf",\n    "npmPublished": false,\n    "install": "npm install github:moejeaux/nexflow-smf-public#sdk",\n    "source": "https://github.com/moejeaux/nexflow-smf-public"\n  }
   }
 }
 ```
