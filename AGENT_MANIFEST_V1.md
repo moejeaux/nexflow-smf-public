@@ -48,12 +48,15 @@ This document defines the **Agent Manifest v1** specification for NexFlow's Smar
   },
   "contact": {
     "docs": "https://docs.nexflowapp.app",
-    "support": "support@nexflowapp.app"
+    "support": "support@nexflowapp.app",
+    "github": "https://github.com/moejeaux/nexflow-smf-public"
   },
   "metadata": {
     "supportsX402": true,
     "primaryNetwork": "base",
-    "primaryToken": "USDC"
+    "primaryToken": "USDC",
+    "settlementContract": "0x43A04228152115fDd5663B2Aa559Ebd84D17A49D",
+    "sdkPackage": "@nexflow/smf"
   }
 }
 ```
