@@ -1,5 +1,5 @@
 // =============================================================================
-// @nexflow/smf SDK Client
+// @nexflow-smf/smf SDK Client
 // =============================================================================
 // Main client class for interacting with NexFlow SMF API
 // Zero runtime dependencies - uses native fetch API
@@ -28,7 +28,7 @@ import { generateIdempotencyKey, normalizeUrl } from './utils';
  * 
  * @example
  * ```ts
- * import { NexFlowSMFClient } from '@nexflow/smf';
+ * import { NexFlowSMFClient } from '@nexflow-smf/smf';
  * 
  * const smf = new NexFlowSMFClient({
  *   baseUrl: 'https://api.nexflowapp.app',

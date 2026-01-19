@@ -1,5 +1,5 @@
 {
-  "name": "@nexflow/smf",
+  "name": "@nexflow-smf/smf",
   "version": "1.0.0",
   "description": "NexFlow Smart Meta-Facilitator SDK for x402 payments - zero dependencies",
   "main": "dist/index.js",
@@ -17,7 +17,7 @@
     "README.md",
     "package.json"
   ],
-  "scripts": {
+  "scripts": {\n    "prepublishOnly": "npm run build",
     "build": "tsup src/index.ts --format cjs,esm --dts --clean",
     "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
     "typecheck": "tsc --noEmit",

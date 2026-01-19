@@ -1,5 +1,5 @@
 // =============================================================================
-// @nexflow/smf SDK Types
+// @nexflow-smf/smf SDK Types
 // =============================================================================
 // Type definitions for the NexFlow SMF SDK
 // Zero dependencies - all types are self-contained

@@ -1,5 +1,5 @@
 // =============================================================================
-// @nexflow/smf SDK Errors
+// @nexflow-smf/smf SDK Errors
 // =============================================================================
 // Custom error class for SDK operations
 // Provides structured error information with HTTP status codes and error codes

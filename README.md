@@ -9,7 +9,7 @@ NexFlow SMF is a production-ready Smart Meta-Facilitator that routes, verifies, 
 | Component | Description |
 |-----------|-------------|
 | `contracts/` | Solidity contracts for atomic batch settlement with Merkle proof verification |
-| `sdk/` | Zero-dependency TypeScript SDK (`@nexflow/smf`) for routing, verification, and settlement |
+| `sdk/` | Zero-dependency TypeScript SDK (`@nexflow-smf/smf`) for routing, verification, and settlement |
 | `examples/` | Ready-to-run examples demonstrating common integration patterns |
 
 ---
@@ -34,7 +34,7 @@ NexFlow SMF is a production-ready Smart Meta-Facilitator that routes, verifies, 
 ### 2. Initialize the Client
 
 ```typescript
-import { NexFlowSMFClient } from '@nexflow/smf';
+import { NexFlowSMFClient } from '@nexflow-smf/smf';
 
 const smf = new NexFlowSMFClient({
   baseUrl: 'https://api.nexflowapp.app',
@@ -180,7 +180,7 @@ interface NexFlowSMFClientOptions {
 ### Error Handling
 
 ```typescript
-import { NexFlowSMFClient, NexFlowSMFError } from '@nexflow/smf';
+import { NexFlowSMFClient, NexFlowSMFError } from '@nexflow-smf/smf';
 
 try {
   const route = await smf.route({ ... });

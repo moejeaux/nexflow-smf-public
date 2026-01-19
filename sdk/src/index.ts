@@ -1,11 +1,11 @@
 // =============================================================================
-// @nexflow/smf SDK
+// @nexflow-smf/smf SDK
 // =============================================================================
 // NexFlow Smart Meta-Facilitator SDK for x402 payments
 // Zero runtime dependencies
 //
 // Quick Start:
-//   import { NexFlowSMFClient } from '@nexflow/smf';
+//   import { NexFlowSMFClient } from '@nexflow-smf/smf';
 //
 //   const smf = new NexFlowSMFClient({
 //     baseUrl: 'https://api.nexflowapp.app',

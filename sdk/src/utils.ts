@@ -1,5 +1,5 @@
 // =============================================================================
-// @nexflow/smf SDK Utilities
+// @nexflow-smf/smf SDK Utilities
 // =============================================================================
 // Validation and helper functions for the SDK
 // Zero dependencies - uses only native JavaScript
