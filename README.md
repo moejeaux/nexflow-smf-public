@@ -28,7 +28,7 @@ NexFlow SMF is a production-ready Smart Meta-Facilitator that routes, verifies, 
 ### 1. Install the SDK
 
 ```bash
-# (Not yet published on npm) Install from GitHub for now\r\nnpm install github:moejeaux/nexflow-smf-public#sdk
+npm install @nexflow-smf/smf
 ```
 
 ### 2. Initialize the Client
