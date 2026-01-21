@@ -1,0 +1,28 @@
+{
+  "version": "1.0.0",
+  "createdAt": "2026-01-04T00:00:00.000Z",
+  "updatedAt": "2026-01-04T00:00:00.000Z",
+  "metrics": [
+    {
+      "id": "1735948800000-initial",
+      "timestamp": "2026-01-04T00:00:00.000Z",
+      "network": "base-mainnet",
+      "merkleRoot": "0x8c3e8b50078bb24bb3cca1567afb35cc3be393bca6aaf2697dde41f834ad2bf7",
+      "paymentsPerBatch": 3,
+      "totalAmountUsd": 5.50,
+      "totalFeesUsd": 0.01375,
+      "gasUsed": 234016,
+      "gasPerPayment": 78005,
+      "gasPriceGwei": 0.01,
+      "gasCostEth": 0.00000234016,
+      "gasCostUsd": 0.00585,
+      "confirmationTimeMs": 1164,
+      "blockNumber": 40359958,
+      "transactionHash": "0xf57c19792434ffe5c4572ac3cae3884e8b2715f4f3199ea2b5ce1dc16b8a9848",
+      "facilitator": "0x7Ab6BcD1706cCfdb6a8711A00d8306A88fdD6bD3",
+      "token": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+      "notes": "First live settlement on Base mainnet"
+    }
+  ]
+}
+

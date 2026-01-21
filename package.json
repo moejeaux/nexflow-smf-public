@@ -11,7 +11,11 @@
     "typecheck": "npm run typecheck --workspace=sdk",
     "clean": "npm run clean --workspace=sdk",
     "example:settlement": "npx tsx examples/basic-settlement.ts",
-    "sign": "npx tsx scripts/sign-message.ts"
+    "sign": "npx tsx scripts/sign-message.ts",
+    "mcp:validate": "npx tsx scripts/validate-mcp-server.ts",
+    "mcp:smf-stdio": "npx tsx mcp/server/stdio.ts",
+    "mcp:smf-server": "npx tsx mcp/server/index.ts",
+    "openapi:validate": "npx @redocly/cli lint openapi/nexflow-smf.yaml"
   },
   "repository": {
     "type": "git",
@@ -37,7 +41,8 @@
     "viem": "^2.0.0"
   },
   "devDependencies": {
-    "tsx": "^4.0.0"
+    "tsx": "^4.0.0",
+    "@redocly/cli": "^1.0.0"
   },
   "engines": {
     "node": ">=18.0.0"

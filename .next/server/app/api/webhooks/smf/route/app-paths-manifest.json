@@ -1,0 +1,3 @@
+{
+  "/api/webhooks/smf/route": "app/api/webhooks/smf/route.js"
+}

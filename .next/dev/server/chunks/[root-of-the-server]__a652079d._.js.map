@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 46, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/meaux/CascadeProjects/my%20second%20project/CascadeProjects/windsurf-project/nexflow-deploy/src/app/api/demo/paid-hello/route.ts"],"sourcesContent":["// src/app/api/demo/paid-hello/route.ts\r\nimport { NextRequest, NextResponse } from \"next/server\";\r\n\r\nexport async function GET(request: NextRequest) {\r\n  const tier = request.nextUrl.searchParams.get(\"tier\") ?? \"basic\";\r\n\r\n  let amount = \"100000\";      // 0.1 USDC (6 decimals)\r\n  let description = \"Paid Hello (basic)\";\r\n\r\n  if (tier === \"pro\") {\r\n    amount = \"500000\";        // 0.5 USDC\r\n    description = \"Paid Hello (pro)\";\r\n  }\r\n\r\n  const body = {\r\n    ok: true,\r\n    tier,\r\n    amount,\r\n    currency: \"USDC\",\r\n    description,\r\n  };\r\n\r\n  return NextResponse.json(body, { status: 200 });\r\n}\r\n"],"names":[],"mappings":"AAAA,uCAAuC;;;;;AACvC;;AAEO,eAAe,IAAI,OAAoB;IAC5C,MAAM,OAAO,QAAQ,OAAO,CAAC,YAAY,CAAC,GAAG,CAAC,WAAW;IAEzD,IAAI,SAAS,UAAe,wBAAwB;IACpD,IAAI,cAAc;IAElB,IAAI,SAAS,OAAO;QAClB,SAAS,UAAiB,WAAW;QACrC,cAAc;IAChB;IAEA,MAAM,OAAO;QACX,IAAI;QACJ;QACA;QACA,UAAU;QACV;IACF;IAEA,OAAO,gJAAY,CAAC,IAAI,CAAC,MAAM;QAAE,QAAQ;IAAI;AAC/C"}}]
+}
