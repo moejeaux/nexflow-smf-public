@@ -41,6 +41,7 @@ jobs:
     permissions:
       contents: read
       pull-requests: write
+      id-token: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -74,8 +75,13 @@ jobs:
             fs.writeFileSync('server.json', JSON.stringify(server, null, 2) + '\n');
           "
       
+      - name: Install MCP Publisher
+        run: |
+          curl -L "https://github.com/modelcontextprotocol/registry/releases/download/v1.3.10/mcp-publisher_1.3.10_$(uname | tr '[:upper:]' '[:lower:]')_$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/').tar.gz" | tar xz mcp-publisher
+          chmod +x mcp-publisher
+      
+      - name: Login to MCP Registry
+        run: ./mcp-publisher login github-oidc
+      
       - name: Publish to MCP Registry
-        uses: modelcontextprotocol/registry-action@v1
-        with:
-          server-json-path: ./server.json
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+        run: ./mcp-publisher publish
