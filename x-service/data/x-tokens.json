@@ -1,0 +1,7 @@
+{
+  "accessToken": "OTc5QWxfd1RMemRDMVUzU0xMa3o5SWxnRlNyOGRybXlDMWUtRk9BY2dIVUVYOjE3NjY4ODc5NDAyOTM6MTowOmF0OjE",
+  "refreshToken": "MURGVjlrVEs4Z2luSXNLMkNGSFJSNFRuaGFIYURjSDFqWThaeVRyQllnNUE4OjE3NjY4ODc5NDAyOTM6MTowOnJ0OjE",
+  "expiresAt": 1766895140574,
+  "scope": "tweet.write users.read tweet.read offline.access",
+  "tokenType": "bearer"
+}

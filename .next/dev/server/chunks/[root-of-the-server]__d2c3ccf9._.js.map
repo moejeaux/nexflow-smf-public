@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 46, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/meaux/CascadeProjects/my%20second%20project/CascadeProjects/windsurf-project/nexflow-deploy/src/app/api/nexflow/hello-world/route.ts"],"sourcesContent":["import { NextResponse } from \"next/server\";\r\n\r\nexport async function GET(req: Request) {\r\n  const { searchParams } = new URL(req.url);\r\n  const name = searchParams.get(\"name\") || \"world\";\r\n  return NextResponse.json({ message: `Hello, ${name}` });\r\n}\r\n\r\n"],"names":[],"mappings":";;;;AAAA;;AAEO,eAAe,IAAI,GAAY;IACpC,MAAM,EAAE,YAAY,EAAE,GAAG,IAAI,IAAI,IAAI,GAAG;IACxC,MAAM,OAAO,aAAa,GAAG,CAAC,WAAW;IACzC,OAAO,gJAAY,CAAC,IAAI,CAAC;QAAE,SAAS,CAAC,OAAO,EAAE,MAAM;IAAC;AACvD"}}]
+}

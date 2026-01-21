@@ -1,0 +1,3 @@
+{
+  "/api/cron/dogfood/route": "app/api/cron/dogfood/route.js"
+}

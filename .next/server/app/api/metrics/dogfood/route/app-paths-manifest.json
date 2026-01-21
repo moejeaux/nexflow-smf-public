@@ -1,0 +1,3 @@
+{
+  "/api/metrics/dogfood/route": "app/api/metrics/dogfood/route.js"
+}

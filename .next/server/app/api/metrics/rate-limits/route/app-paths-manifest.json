@@ -1,0 +1,3 @@
+{
+  "/api/metrics/rate-limits/route": "app/api/metrics/rate-limits/route.js"
+}

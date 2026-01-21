@@ -1,0 +1,1830 @@
+{
+  "version": "1.0",
+  "lastUpdated": "2025-12-27T16:01:59.149Z",
+  "current": {
+    "pieverse": {
+      "facilitatorId": "pieverse",
+      "scatteringName": "Pieverse",
+      "period": "3d",
+      "volumeUsd3d": 268450.2,
+      "txCount3d": 18074,
+      "uniqueBuyers3d": 8348,
+      "uniqueSellers3d": 8370,
+      "volumeUsdAllTime": 3618749.5,
+      "chains": [
+        "eip155:56",
+        "eip155:8453"
+      ],
+      "volumeChangeRate": 177.0215801146432,
+      "txChangeRate": 108.75490875490877,
+      "buyersChangeRate": 71.45204354076813,
+      "fetchedAt": "2025-12-27T16:01:59.142Z",
+      "scatteringId": 174,
+      "tags": [
+        "x402b"
+      ]
+    },
+    "dexter": {
+      "facilitatorId": "dexter",
+      "scatteringName": "Dexter",
+      "period": "3d",
+      "volumeUsd3d": 138982.552,
+      "txCount3d": 2061127,
+      "uniqueBuyers3d": 2030,
+      "uniqueSellers3d": 9,
+      "volumeUsdAllTime": 4690194,
+      "chains": [
+        "solana:mainnet"
+      ],
+      "marketCap": 2384975.5854274766,
+      "volumeChangeRate": -25.83953634094542,
+      "txChangeRate": -0.2610666617630976,
+      "buyersChangeRate": 58.84194053208138,
+      "fetchedAt": "2025-12-27T16:01:59.142Z",
+      "scatteringId": 144,
+      "tags": [
+        "Facilitator"
+      ]
+    },
+    "cdp": {
+      "facilitatorId": "cdp",
+      "scatteringName": "Coinbase",
+      "period": "3d",
+      "volumeUsd3d": 137535.793,
+      "txCount3d": 3027262,
+      "uniqueBuyers3d": 8151,
+      "uniqueSellers3d": 987,
+      "volumeUsdAllTime": 26424512,
+      "chains": [
+        "eip155:8453",
+        "solana:mainnet"
+      ],
+      "volumeChangeRate": 27.257601227987372,
+      "txChangeRate": 12.357681452899966,
+      "buyersChangeRate": -39.13530465949821,
+      "fetchedAt": "2025-12-27T16:01:59.142Z",
+      "scatteringId": 134,
+      "tags": [
+        "Facilitator"
+      ]
+    },
+    "payai": {
+      "facilitatorId": "payai",
+      "scatteringName": "PayAI Network",
+      "period": "3d",
+      "volumeUsd3d": 107661.857,
+      "txCount3d": 1243696,
+      "uniqueBuyers3d": 9694,
+      "uniqueSellers3d": 338,
+      "volumeUsdAllTime": 4795050.5,
+      "chains": [
+        "eip155:8453",
+        "solana:mainnet",
+        "eip155:137"
+      ],
+      "marketCap": 11915427.767536098,
+      "volumeChangeRate": 31.466922327932057,
+      "txChangeRate": 23.404821108573177,
+      "buyersChangeRate": -5.091051497943998,
+      "fetchedAt": "2025-12-27T16:01:59.142Z",
+      "scatteringId": 135,
+      "tags": [
+        "Facilitator"
+      ]
+    },
+    "codenut": {
+      "facilitatorId": "codenut",
+      "scatteringName": "CodeNutPay",
+      "period": "3d",
+      "volumeUsd3d": 5720.180707,
+      "txCount3d": 11184,
+      "uniqueBuyers3d": 6138,
+      "uniqueSellers3d": 9,
+      "volumeUsdAllTime": 109640.64,
+      "chains": [
+        "eip155:8453",
+        "solana:mainnet"
+      ],
+      "volumeChangeRate": 22413.825946468707,
+      "txChangeRate": 418.49791376912384,
+      "buyersChangeRate": 564.2857142857143,
+      "fetchedAt": "2025-12-27T16:01:59.142Z",
+      "scatteringId": 133,
+      "tags": [
+        "Facilitator"
+      ]
+    },
+    "openx402": {
+      "facilitatorId": "openx402",
+      "scatteringName": "Open x402",
+      "period": "3d",
+      "volumeUsd3d": 3027.28565,
+      "txCount3d": 33673,
+      "uniqueBuyers3d": 264,
+      "uniqueSellers3d": 12,
+      "volumeUsdAllTime": 192408.19,
+      "chains": [
+        "eip155:8453",
+        "solana:mainnet"
+      ],
+      "volumeChangeRate": 120.58470474597675,
+      "txChangeRate": 63.81105273399494,
+      "buyersChangeRate": 0,
+      "fetchedAt": "2025-12-27T16:01:59.142Z",
+      "scatteringId": 141,
+      "tags": [
+        "Facilitator"
+      ]
+    },
+    "virtuals": {
+      "facilitatorId": "virtuals",
+      "scatteringName": "Virtuals Protocol",
+      "period": "3d",
+      "volumeUsd3d": 1477.03304,
+      "txCount3d": 4859,
+      "uniqueBuyers3d": 824,
+      "uniqueSellers3d": 6,
+      "volumeUsdAllTime": 1329430,
+      "chains": [
+        "eip155:8453"
+      ],
+      "marketCap": 706528258.005295,
+      "volumeChangeRate": -94.5403877084626,
+      "txChangeRate": -91.40623618259316,
+      "buyersChangeRate": -56.51715039577836,
+      "fetchedAt": "2025-12-27T16:01:59.142Z",
+      "scatteringId": 183,
+      "tags": [
+        "Launchpad",
+        "Framework",
+        "Virtuals Eco",
+        "Grayscale"
+      ]
+    },
+    "questflow": {
+      "facilitatorId": "questflow",
+      "scatteringName": "Questflow",
+      "period": "3d",
+      "volumeUsd3d": 220.332715,
+      "txCount3d": 9173,
+      "uniqueBuyers3d": 4394,
+      "uniqueSellers3d": 95,
+      "volumeUsdAllTime": 5335.536,
+      "chains": [
+        "eip155:8453"
+      ],
+      "volumeChangeRate": -32.47518088172296,
+      "txChangeRate": -33.02913046652552,
+      "buyersChangeRate": -19.138755980861244,
+      "fetchedAt": "2025-12-27T16:01:59.142Z",
+      "scatteringId": 148,
+      "tags": [
+        "Facilitator"
+      ]
+    },
+    "x402jobs": {
+      "facilitatorId": "x402jobs",
+      "scatteringName": "x402jobs",
+      "period": "3d",
+      "volumeUsd3d": 125.914657,
+      "txCount3d": 3237,
+      "uniqueBuyers3d": 28,
+      "uniqueSellers3d": 24,
+      "volumeUsdAllTime": 909.9162,
+      "chains": [
+        "solana:mainnet"
+      ],
+      "marketCap": 963668.595037737,
+      "volumeChangeRate": 511.3821932386344,
+      "txChangeRate": 1090.0735294117646,
+      "buyersChangeRate": 64.70588235294117,
+      "fetchedAt": "2025-12-27T16:01:59.142Z",
+      "scatteringId": 213,
+      "tags": [
+        "x402"
+      ]
+    },
+    "mogami": {
+      "facilitatorId": "mogami",
+      "scatteringName": "Mogami",
+      "period": "3d",
+      "volumeUsd3d": 71.02770849999999,
+      "txCount3d": 6,
+      "uniqueBuyers3d": 3,
+      "uniqueSellers3d": 5,
+      "volumeUsdAllTime": 277387.62,
+      "chains": [
+        "eip155:8453"
+      ],
+      "volumeChangeRate": 425.11515404583287,
+      "txChangeRate": -45.45454545454545,
+      "buyersChangeRate": -40,
+      "fetchedAt": "2025-12-27T16:01:59.142Z",
+      "scatteringId": 140,
+      "tags": [
+        "Facilitator"
+      ]
+    },
+    "heurist": {
+      "facilitatorId": "heurist",
+      "scatteringName": "Heurist",
+      "period": "3d",
+      "volumeUsd3d": 28.118261000000004,
+      "txCount3d": 277423,
+      "uniqueBuyers3d": 7881,
+      "uniqueSellers3d": 8,
+      "volumeUsdAllTime": 12456.155,
+      "chains": [
+        "eip155:8453"
+      ],
+      "marketCap": 2444864.772007064,
+      "volumeChangeRate": 7.698616565164349,
+      "txChangeRate": 8.31081925227223,
+      "buyersChangeRate": -6.9539551357733185,
+      "fetchedAt": "2025-12-27T16:01:59.142Z",
+      "scatteringId": 190,
+      "tags": [
+        "Framework",
+        "MCP",
+        "x402"
+      ]
+    },
+    "thirdweb": {
+      "facilitatorId": "thirdweb",
+      "scatteringName": "Thirdweb",
+      "period": "3d",
+      "volumeUsd3d": 22.366904199999997,
+      "txCount3d": 201,
+      "uniqueBuyers3d": 38,
+      "uniqueSellers3d": 26,
+      "volumeUsdAllTime": 114229.17,
+      "chains": [
+        "eip155:8453"
+      ],
+      "volumeChangeRate": -19.394815833050778,
+      "txChangeRate": 103.03030303030303,
+      "buyersChangeRate": 31.03448275862069,
+      "fetchedAt": "2025-12-27T16:01:59.142Z",
+      "scatteringId": 137,
+      "tags": [
+        "Facilitator"
+      ]
+    },
+    "corbits": {
+      "facilitatorId": "corbits",
+      "scatteringName": "Corbits",
+      "period": "3d",
+      "volumeUsd3d": 13.0740375,
+      "txCount3d": 741,
+      "uniqueBuyers3d": 7,
+      "uniqueSellers3d": 33,
+      "volumeUsdAllTime": 264.96713,
+      "chains": [
+        "solana:mainnet"
+      ],
+      "volumeChangeRate": -11.331494585027754,
+      "txChangeRate": -13.837209302325581,
+      "buyersChangeRate": -12.5,
+      "fetchedAt": "2025-12-27T16:01:59.142Z",
+      "scatteringId": 145,
+      "tags": [
+        "Facilitator"
+      ]
+    },
+    "polygon": {
+      "facilitatorId": "polygon",
+      "scatteringName": "Polygon",
+      "period": "3d",
+      "volumeUsd3d": 9.7735017,
+      "txCount3d": 11966,
+      "uniqueBuyers3d": 15,
+      "uniqueSellers3d": 6,
+      "volumeUsdAllTime": 564.5924,
+      "chains": [
+        "eip155:137"
+      ],
+      "volumeChangeRate": -8.002542437096787,
+      "txChangeRate": -6.843129622421175,
+      "buyersChangeRate": 0,
+      "fetchedAt": "2025-12-27T16:01:59.142Z",
+      "scatteringId": 196,
+      "tags": []
+    },
+    "anyspend": {
+      "facilitatorId": "anyspend",
+      "scatteringName": "Anyspend",
+      "period": "3d",
+      "volumeUsd3d": 6.2382779,
+      "txCount3d": 41653,
+      "uniqueBuyers3d": 667,
+      "uniqueSellers3d": 4,
+      "volumeUsdAllTime": 94560.34,
+      "chains": [
+        "eip155:8453",
+        "solana:mainnet"
+      ],
+      "volumeChangeRate": -99.91963069825238,
+      "txChangeRate": 262.13701964875673,
+      "buyersChangeRate": -14.377406931964057,
+      "fetchedAt": "2025-12-27T16:01:59.142Z",
+      "scatteringId": 207,
+      "tags": [
+        "Facilitator"
+      ]
+    },
+    "treasure": {
+      "facilitatorId": "treasure",
+      "scatteringName": "Treasure",
+      "period": "3d",
+      "volumeUsd3d": 4.1830995,
+      "txCount3d": 15,
+      "uniqueBuyers3d": 9,
+      "uniqueSellers3d": 7,
+      "volumeUsdAllTime": 228.15009,
+      "chains": [
+        "eip155:8453"
+      ],
+      "marketCap": 33996694.53004073,
+      "volumeChangeRate": -85.1951802885229,
+      "txChangeRate": -60.526315789473685,
+      "buyersChangeRate": -10,
+      "fetchedAt": "2025-12-27T16:01:59.142Z",
+      "scatteringId": 191,
+      "tags": []
+    },
+    "ultravioletadao": {
+      "facilitatorId": "ultravioletadao",
+      "scatteringName": "Ultravioleta DAO",
+      "period": "3d",
+      "volumeUsd3d": 3.94503214,
+      "txCount3d": 174,
+      "uniqueBuyers3d": 19,
+      "uniqueSellers3d": 25,
+      "volumeUsdAllTime": 227.32121,
+      "chains": [
+        "eip155:8453",
+        "solana:mainnet"
+      ],
+      "volumeChangeRate": 82.43296239796403,
+      "txChangeRate": 155.88235294117646,
+      "buyersChangeRate": 171.42857142857142,
+      "fetchedAt": "2025-12-27T16:01:59.142Z",
+      "scatteringId": 173,
+      "tags": [
+        "Facilitator"
+      ]
+    },
+    "xecho": {
+      "facilitatorId": "xecho",
+      "scatteringName": "xEcho",
+      "period": "3d",
+      "volumeUsd3d": 1.1003418,
+      "txCount3d": 55,
+      "uniqueBuyers3d": 3,
+      "uniqueSellers3d": 5,
+      "volumeUsdAllTime": 444.78354,
+      "chains": [
+        "eip155:8453"
+      ],
+      "volumeChangeRate": 110.03418,
+      "txChangeRate": 5500,
+      "buyersChangeRate": 300,
+      "fetchedAt": "2025-12-27T16:01:59.142Z",
+      "scatteringId": 149,
+      "tags": [
+        "Facilitator"
+      ]
+    },
+    "unibase": {
+      "facilitatorId": "unibase",
+      "scatteringName": "Unibase",
+      "period": "3d",
+      "volumeUsd3d": 0.050300000000000004,
+      "txCount3d": 68,
+      "uniqueBuyers3d": 3,
+      "uniqueSellers3d": 15,
+      "volumeUsdAllTime": 13.416166,
+      "chains": [
+        "eip155:56"
+      ],
+      "marketCap": 161015133.1622351,
+      "volumeChangeRate": 18.316750170536096,
+      "txChangeRate": 112.5,
+      "buyersChangeRate": -40,
+      "fetchedAt": "2025-12-27T16:01:59.142Z",
+      "scatteringId": 188,
+      "tags": [
+        "x402"
+      ]
+    },
+    "openmid": {
+      "facilitatorId": "openmid",
+      "scatteringName": "OpenMid",
+      "period": "3d",
+      "volumeUsd3d": 0.0010004237,
+      "txCount3d": 2,
+      "uniqueBuyers3d": 2,
+      "uniqueSellers3d": 2,
+      "volumeUsdAllTime": 0.019006237,
+      "chains": [
+        "eip155:8453"
+      ],
+      "volumeChangeRate": -79.99810182404433,
+      "txChangeRate": -60,
+      "buyersChangeRate": 0,
+      "fetchedAt": "2025-12-27T16:01:59.142Z",
+      "scatteringId": 218,
+      "tags": []
+    },
+    "altlayer": {
+      "facilitatorId": "altlayer",
+      "scatteringName": "AltLayer",
+      "period": "3d",
+      "volumeUsd3d": 0,
+      "txCount3d": 0,
+      "uniqueBuyers3d": 0,
+      "uniqueSellers3d": 0,
+      "volumeUsdAllTime": 11.378117,
+      "chains": [
+        "eip155:8453"
+      ],
+      "volumeChangeRate": 0,
+      "txChangeRate": 0,
+      "buyersChangeRate": 0,
+      "fetchedAt": "2025-12-27T16:01:59.142Z",
+      "scatteringId": 197,
+      "tags": []
+    },
+    "b402": {
+      "facilitatorId": "b402",
+      "scatteringName": "b402",
+      "period": "3d",
+      "volumeUsd3d": 0,
+      "txCount3d": 0,
+      "uniqueBuyers3d": 0,
+      "uniqueSellers3d": 0,
+      "volumeUsdAllTime": 210796.77,
+      "chains": [
+        "eip155:56"
+      ],
+      "volumeChangeRate": 0,
+      "txChangeRate": 0,
+      "buyersChangeRate": 0,
+      "fetchedAt": "2025-12-27T16:01:59.142Z",
+      "scatteringId": 175,
+      "tags": [
+        "b402"
+      ]
+    },
+    "x444": {
+      "facilitatorId": "x444",
+      "scatteringName": "x444",
+      "period": "3d",
+      "volumeUsd3d": 0,
+      "txCount3d": 0,
+      "uniqueBuyers3d": 0,
+      "uniqueSellers3d": 0,
+      "volumeUsdAllTime": 39.927307,
+      "chains": [
+        "eip155:56"
+      ],
+      "marketCap": 11905.702094667,
+      "volumeChangeRate": 0,
+      "txChangeRate": 0,
+      "buyersChangeRate": 0,
+      "fetchedAt": "2025-12-27T16:01:59.142Z",
+      "scatteringId": 177,
+      "tags": [
+        "b402"
+      ]
+    },
+    "acedatacloud": {
+      "facilitatorId": "acedatacloud",
+      "scatteringName": "AceDataCloud",
+      "period": "3d",
+      "volumeUsd3d": 0,
+      "txCount3d": 0,
+      "uniqueBuyers3d": 0,
+      "uniqueSellers3d": 0,
+      "volumeUsdAllTime": 38.238686,
+      "chains": [
+        "eip155:8453"
+      ],
+      "volumeChangeRate": 0,
+      "txChangeRate": 0,
+      "buyersChangeRate": 0,
+      "fetchedAt": "2025-12-27T16:01:59.142Z",
+      "scatteringId": 192,
+      "tags": []
+    },
+    "daydreams": {
+      "facilitatorId": "daydreams",
+      "scatteringName": "Daydreams",
+      "period": "3d",
+      "volumeUsd3d": 0,
+      "txCount3d": 0,
+      "uniqueBuyers3d": 0,
+      "uniqueSellers3d": 0,
+      "volumeUsdAllTime": 2757578.5,
+      "chains": [
+        "solana:mainnet",
+        "eip155:8453"
+      ],
+      "marketCap": 6253485.25639199,
+      "volumeChangeRate": -100,
+      "txChangeRate": -100,
+      "buyersChangeRate": -100,
+      "fetchedAt": "2025-12-27T16:01:59.142Z",
+      "scatteringId": 216,
+      "tags": [
+        "Facilitator"
+      ]
+    },
+    "aurracloud": {
+      "facilitatorId": "aurracloud",
+      "scatteringName": "AurraCloud",
+      "period": "3d",
+      "volumeUsd3d": 0,
+      "txCount3d": 0,
+      "uniqueBuyers3d": 0,
+      "uniqueSellers3d": 0,
+      "volumeUsdAllTime": 53742.77,
+      "chains": [
+        "eip155:8453",
+        "solana:mainnet"
+      ],
+      "marketCap": 754063.776554428,
+      "volumeChangeRate": 0,
+      "txChangeRate": 0,
+      "buyersChangeRate": 0,
+      "fetchedAt": "2025-12-27T16:01:59.142Z",
+      "scatteringId": 138,
+      "tags": [
+        "Facilitator"
+      ]
+    },
+    "x402bscan": {
+      "facilitatorId": "x402bscan",
+      "scatteringName": "x402Bscan",
+      "period": "3d",
+      "volumeUsd3d": 0,
+      "txCount3d": 0,
+      "uniqueBuyers3d": 0,
+      "uniqueSellers3d": 0,
+      "volumeUsdAllTime": 43963.824,
+      "chains": [
+        "eip155:56"
+      ],
+      "marketCap": 11460.612524821,
+      "volumeChangeRate": 0,
+      "txChangeRate": 0,
+      "buyersChangeRate": 0,
+      "fetchedAt": "2025-12-27T16:01:59.142Z",
+      "scatteringId": 176,
+      "tags": [
+        "b402"
+      ]
+    },
+    "x402rs": {
+      "facilitatorId": "x402rs",
+      "scatteringName": "x402rs",
+      "period": "3d",
+      "volumeUsd3d": 0,
+      "txCount3d": 0,
+      "uniqueBuyers3d": 0,
+      "uniqueSellers3d": 0,
+      "volumeUsdAllTime": 468279.72,
+      "chains": [
+        "eip155:8453"
+      ],
+      "volumeChangeRate": 0,
+      "txChangeRate": 0,
+      "buyersChangeRate": 0,
+      "fetchedAt": "2025-12-27T16:01:59.142Z",
+      "scatteringId": 136,
+      "tags": [
+        "Facilitator"
+      ]
+    }
+  },
+  "history": [
+    {
+      "fetchedAt": "2025-12-27T16:01:59.149Z",
+      "metrics": [
+        {
+          "facilitatorId": "pieverse",
+          "scatteringName": "Pieverse",
+          "period": "3d",
+          "volumeUsd3d": 268450.2,
+          "txCount3d": 18074,
+          "uniqueBuyers3d": 8348,
+          "uniqueSellers3d": 8370,
+          "volumeUsdAllTime": 3618749.5,
+          "chains": [
+            "eip155:56",
+            "eip155:8453"
+          ],
+          "volumeChangeRate": 177.0215801146432,
+          "txChangeRate": 108.75490875490877,
+          "buyersChangeRate": 71.45204354076813,
+          "fetchedAt": "2025-12-27T16:01:59.142Z",
+          "scatteringId": 174,
+          "tags": [
+            "x402b"
+          ]
+        },
+        {
+          "facilitatorId": "dexter",
+          "scatteringName": "Dexter",
+          "period": "3d",
+          "volumeUsd3d": 138982.552,
+          "txCount3d": 2061127,
+          "uniqueBuyers3d": 2030,
+          "uniqueSellers3d": 9,
+          "volumeUsdAllTime": 4690194,
+          "chains": [
+            "solana:mainnet"
+          ],
+          "marketCap": 2384975.5854274766,
+          "volumeChangeRate": -25.83953634094542,
+          "txChangeRate": -0.2610666617630976,
+          "buyersChangeRate": 58.84194053208138,
+          "fetchedAt": "2025-12-27T16:01:59.142Z",
+          "scatteringId": 144,
+          "tags": [
+            "Facilitator"
+          ]
+        },
+        {
+          "facilitatorId": "cdp",
+          "scatteringName": "Coinbase",
+          "period": "3d",
+          "volumeUsd3d": 137535.793,
+          "txCount3d": 3027262,
+          "uniqueBuyers3d": 8151,
+          "uniqueSellers3d": 987,
+          "volumeUsdAllTime": 26424512,
+          "chains": [
+            "eip155:8453",
+            "solana:mainnet"
+          ],
+          "volumeChangeRate": 27.257601227987372,
+          "txChangeRate": 12.357681452899966,
+          "buyersChangeRate": -39.13530465949821,
+          "fetchedAt": "2025-12-27T16:01:59.142Z",
+          "scatteringId": 134,
+          "tags": [
+            "Facilitator"
+          ]
+        },
+        {
+          "facilitatorId": "payai",
+          "scatteringName": "PayAI Network",
+          "period": "3d",
+          "volumeUsd3d": 107661.857,
+          "txCount3d": 1243696,
+          "uniqueBuyers3d": 9694,
+          "uniqueSellers3d": 338,
+          "volumeUsdAllTime": 4795050.5,
+          "chains": [
+            "eip155:8453",
+            "solana:mainnet",
+            "eip155:137"
+          ],
+          "marketCap": 11915427.767536098,
+          "volumeChangeRate": 31.466922327932057,
+          "txChangeRate": 23.404821108573177,
+          "buyersChangeRate": -5.091051497943998,
+          "fetchedAt": "2025-12-27T16:01:59.142Z",
+          "scatteringId": 135,
+          "tags": [
+            "Facilitator"
+          ]
+        },
+        {
+          "facilitatorId": "codenut",
+          "scatteringName": "CodeNutPay",
+          "period": "3d",
+          "volumeUsd3d": 5720.180707,
+          "txCount3d": 11184,
+          "uniqueBuyers3d": 6138,
+          "uniqueSellers3d": 9,
+          "volumeUsdAllTime": 109640.64,
+          "chains": [
+            "eip155:8453",
+            "solana:mainnet"
+          ],
+          "volumeChangeRate": 22413.825946468707,
+          "txChangeRate": 418.49791376912384,
+          "buyersChangeRate": 564.2857142857143,
+          "fetchedAt": "2025-12-27T16:01:59.142Z",
+          "scatteringId": 133,
+          "tags": [
+            "Facilitator"
+          ]
+        },
+        {
+          "facilitatorId": "openx402",
+          "scatteringName": "Open x402",
+          "period": "3d",
+          "volumeUsd3d": 3027.28565,
+          "txCount3d": 33673,
+          "uniqueBuyers3d": 264,
+          "uniqueSellers3d": 12,
+          "volumeUsdAllTime": 192408.19,
+          "chains": [
+            "eip155:8453",
+            "solana:mainnet"
+          ],
+          "volumeChangeRate": 120.58470474597675,
+          "txChangeRate": 63.81105273399494,
+          "buyersChangeRate": 0,
+          "fetchedAt": "2025-12-27T16:01:59.142Z",
+          "scatteringId": 141,
+          "tags": [
+            "Facilitator"
+          ]
+        },
+        {
+          "facilitatorId": "virtuals",
+          "scatteringName": "Virtuals Protocol",
+          "period": "3d",
+          "volumeUsd3d": 1477.03304,
+          "txCount3d": 4859,
+          "uniqueBuyers3d": 824,
+          "uniqueSellers3d": 6,
+          "volumeUsdAllTime": 1329430,
+          "chains": [
+            "eip155:8453"
+          ],
+          "marketCap": 706528258.005295,
+          "volumeChangeRate": -94.5403877084626,
+          "txChangeRate": -91.40623618259316,
+          "buyersChangeRate": -56.51715039577836,
+          "fetchedAt": "2025-12-27T16:01:59.142Z",
+          "scatteringId": 183,
+          "tags": [
+            "Launchpad",
+            "Framework",
+            "Virtuals Eco",
+            "Grayscale"
+          ]
+        },
+        {
+          "facilitatorId": "questflow",
+          "scatteringName": "Questflow",
+          "period": "3d",
+          "volumeUsd3d": 220.332715,
+          "txCount3d": 9173,
+          "uniqueBuyers3d": 4394,
+          "uniqueSellers3d": 95,
+          "volumeUsdAllTime": 5335.536,
+          "chains": [
+            "eip155:8453"
+          ],
+          "volumeChangeRate": -32.47518088172296,
+          "txChangeRate": -33.02913046652552,
+          "buyersChangeRate": -19.138755980861244,
+          "fetchedAt": "2025-12-27T16:01:59.142Z",
+          "scatteringId": 148,
+          "tags": [
+            "Facilitator"
+          ]
+        },
+        {
+          "facilitatorId": "x402jobs",
+          "scatteringName": "x402jobs",
+          "period": "3d",
+          "volumeUsd3d": 125.914657,
+          "txCount3d": 3237,
+          "uniqueBuyers3d": 28,
+          "uniqueSellers3d": 24,
+          "volumeUsdAllTime": 909.9162,
+          "chains": [
+            "solana:mainnet"
+          ],
+          "marketCap": 963668.595037737,
+          "volumeChangeRate": 511.3821932386344,
+          "txChangeRate": 1090.0735294117646,
+          "buyersChangeRate": 64.70588235294117,
+          "fetchedAt": "2025-12-27T16:01:59.142Z",
+          "scatteringId": 213,
+          "tags": [
+            "x402"
+          ]
+        },
+        {
+          "facilitatorId": "mogami",
+          "scatteringName": "Mogami",
+          "period": "3d",
+          "volumeUsd3d": 71.02770849999999,
+          "txCount3d": 6,
+          "uniqueBuyers3d": 3,
+          "uniqueSellers3d": 5,
+          "volumeUsdAllTime": 277387.62,
+          "chains": [
+            "eip155:8453"
+          ],
+          "volumeChangeRate": 425.11515404583287,
+          "txChangeRate": -45.45454545454545,
+          "buyersChangeRate": -40,
+          "fetchedAt": "2025-12-27T16:01:59.142Z",
+          "scatteringId": 140,
+          "tags": [
+            "Facilitator"
+          ]
+        },
+        {
+          "facilitatorId": "heurist",
+          "scatteringName": "Heurist",
+          "period": "3d",
+          "volumeUsd3d": 28.118261000000004,
+          "txCount3d": 277423,
+          "uniqueBuyers3d": 7881,
+          "uniqueSellers3d": 8,
+          "volumeUsdAllTime": 12456.155,
+          "chains": [
+            "eip155:8453"
+          ],
+          "marketCap": 2444864.772007064,
+          "volumeChangeRate": 7.698616565164349,
+          "txChangeRate": 8.31081925227223,
+          "buyersChangeRate": -6.9539551357733185,
+          "fetchedAt": "2025-12-27T16:01:59.142Z",
+          "scatteringId": 190,
+          "tags": [
+            "Framework",
+            "MCP",
+            "x402"
+          ]
+        },
+        {
+          "facilitatorId": "thirdweb",
+          "scatteringName": "Thirdweb",
+          "period": "3d",
+          "volumeUsd3d": 22.366904199999997,
+          "txCount3d": 201,
+          "uniqueBuyers3d": 38,
+          "uniqueSellers3d": 26,
+          "volumeUsdAllTime": 114229.17,
+          "chains": [
+            "eip155:8453"
+          ],
+          "volumeChangeRate": -19.394815833050778,
+          "txChangeRate": 103.03030303030303,
+          "buyersChangeRate": 31.03448275862069,
+          "fetchedAt": "2025-12-27T16:01:59.142Z",
+          "scatteringId": 137,
+          "tags": [
+            "Facilitator"
+          ]
+        },
+        {
+          "facilitatorId": "corbits",
+          "scatteringName": "Corbits",
+          "period": "3d",
+          "volumeUsd3d": 13.0740375,
+          "txCount3d": 741,
+          "uniqueBuyers3d": 7,
+          "uniqueSellers3d": 33,
+          "volumeUsdAllTime": 264.96713,
+          "chains": [
+            "solana:mainnet"
+          ],
+          "volumeChangeRate": -11.331494585027754,
+          "txChangeRate": -13.837209302325581,
+          "buyersChangeRate": -12.5,
+          "fetchedAt": "2025-12-27T16:01:59.142Z",
+          "scatteringId": 145,
+          "tags": [
+            "Facilitator"
+          ]
+        },
+        {
+          "facilitatorId": "polygon",
+          "scatteringName": "Polygon",
+          "period": "3d",
+          "volumeUsd3d": 9.7735017,
+          "txCount3d": 11966,
+          "uniqueBuyers3d": 15,
+          "uniqueSellers3d": 6,
+          "volumeUsdAllTime": 564.5924,
+          "chains": [
+            "eip155:137"
+          ],
+          "volumeChangeRate": -8.002542437096787,
+          "txChangeRate": -6.843129622421175,
+          "buyersChangeRate": 0,
+          "fetchedAt": "2025-12-27T16:01:59.142Z",
+          "scatteringId": 196,
+          "tags": []
+        },
+        {
+          "facilitatorId": "anyspend",
+          "scatteringName": "Anyspend",
+          "period": "3d",
+          "volumeUsd3d": 6.2382779,
+          "txCount3d": 41653,
+          "uniqueBuyers3d": 667,
+          "uniqueSellers3d": 4,
+          "volumeUsdAllTime": 94560.34,
+          "chains": [
+            "eip155:8453",
+            "solana:mainnet"
+          ],
+          "volumeChangeRate": -99.91963069825238,
+          "txChangeRate": 262.13701964875673,
+          "buyersChangeRate": -14.377406931964057,
+          "fetchedAt": "2025-12-27T16:01:59.142Z",
+          "scatteringId": 207,
+          "tags": [
+            "Facilitator"
+          ]
+        },
+        {
+          "facilitatorId": "treasure",
+          "scatteringName": "Treasure",
+          "period": "3d",
+          "volumeUsd3d": 4.1830995,
+          "txCount3d": 15,
+          "uniqueBuyers3d": 9,
+          "uniqueSellers3d": 7,
+          "volumeUsdAllTime": 228.15009,
+          "chains": [
+            "eip155:8453"
+          ],
+          "marketCap": 33996694.53004073,
+          "volumeChangeRate": -85.1951802885229,
+          "txChangeRate": -60.526315789473685,
+          "buyersChangeRate": -10,
+          "fetchedAt": "2025-12-27T16:01:59.142Z",
+          "scatteringId": 191,
+          "tags": []
+        },
+        {
+          "facilitatorId": "ultravioletadao",
+          "scatteringName": "Ultravioleta DAO",
+          "period": "3d",
+          "volumeUsd3d": 3.94503214,
+          "txCount3d": 174,
+          "uniqueBuyers3d": 19,
+          "uniqueSellers3d": 25,
+          "volumeUsdAllTime": 227.32121,
+          "chains": [
+            "eip155:8453",
+            "solana:mainnet"
+          ],
+          "volumeChangeRate": 82.43296239796403,
+          "txChangeRate": 155.88235294117646,
+          "buyersChangeRate": 171.42857142857142,
+          "fetchedAt": "2025-12-27T16:01:59.142Z",
+          "scatteringId": 173,
+          "tags": [
+            "Facilitator"
+          ]
+        },
+        {
+          "facilitatorId": "xecho",
+          "scatteringName": "xEcho",
+          "period": "3d",
+          "volumeUsd3d": 1.1003418,
+          "txCount3d": 55,
+          "uniqueBuyers3d": 3,
+          "uniqueSellers3d": 5,
+          "volumeUsdAllTime": 444.78354,
+          "chains": [
+            "eip155:8453"
+          ],
+          "volumeChangeRate": 110.03418,
+          "txChangeRate": 5500,
+          "buyersChangeRate": 300,
+          "fetchedAt": "2025-12-27T16:01:59.142Z",
+          "scatteringId": 149,
+          "tags": [
+            "Facilitator"
+          ]
+        },
+        {
+          "facilitatorId": "unibase",
+          "scatteringName": "Unibase",
+          "period": "3d",
+          "volumeUsd3d": 0.050300000000000004,
+          "txCount3d": 68,
+          "uniqueBuyers3d": 3,
+          "uniqueSellers3d": 15,
+          "volumeUsdAllTime": 13.416166,
+          "chains": [
+            "eip155:56"
+          ],
+          "marketCap": 161015133.1622351,
+          "volumeChangeRate": 18.316750170536096,
+          "txChangeRate": 112.5,
+          "buyersChangeRate": -40,
+          "fetchedAt": "2025-12-27T16:01:59.142Z",
+          "scatteringId": 188,
+          "tags": [
+            "x402"
+          ]
+        },
+        {
+          "facilitatorId": "openmid",
+          "scatteringName": "OpenMid",
+          "period": "3d",
+          "volumeUsd3d": 0.0010004237,
+          "txCount3d": 2,
+          "uniqueBuyers3d": 2,
+          "uniqueSellers3d": 2,
+          "volumeUsdAllTime": 0.019006237,
+          "chains": [
+            "eip155:8453"
+          ],
+          "volumeChangeRate": -79.99810182404433,
+          "txChangeRate": -60,
+          "buyersChangeRate": 0,
+          "fetchedAt": "2025-12-27T16:01:59.142Z",
+          "scatteringId": 218,
+          "tags": []
+        },
+        {
+          "facilitatorId": "altlayer",
+          "scatteringName": "AltLayer",
+          "period": "3d",
+          "volumeUsd3d": 0,
+          "txCount3d": 0,
+          "uniqueBuyers3d": 0,
+          "uniqueSellers3d": 0,
+          "volumeUsdAllTime": 11.378117,
+          "chains": [
+            "eip155:8453"
+          ],
+          "volumeChangeRate": 0,
+          "txChangeRate": 0,
+          "buyersChangeRate": 0,
+          "fetchedAt": "2025-12-27T16:01:59.142Z",
+          "scatteringId": 197,
+          "tags": []
+        },
+        {
+          "facilitatorId": "b402",
+          "scatteringName": "b402",
+          "period": "3d",
+          "volumeUsd3d": 0,
+          "txCount3d": 0,
+          "uniqueBuyers3d": 0,
+          "uniqueSellers3d": 0,
+          "volumeUsdAllTime": 210796.77,
+          "chains": [
+            "eip155:56"
+          ],
+          "volumeChangeRate": 0,
+          "txChangeRate": 0,
+          "buyersChangeRate": 0,
+          "fetchedAt": "2025-12-27T16:01:59.142Z",
+          "scatteringId": 175,
+          "tags": [
+            "b402"
+          ]
+        },
+        {
+          "facilitatorId": "x444",
+          "scatteringName": "x444",
+          "period": "3d",
+          "volumeUsd3d": 0,
+          "txCount3d": 0,
+          "uniqueBuyers3d": 0,
+          "uniqueSellers3d": 0,
+          "volumeUsdAllTime": 39.927307,
+          "chains": [
+            "eip155:56"
+          ],
+          "marketCap": 11905.702094667,
+          "volumeChangeRate": 0,
+          "txChangeRate": 0,
+          "buyersChangeRate": 0,
+          "fetchedAt": "2025-12-27T16:01:59.142Z",
+          "scatteringId": 177,
+          "tags": [
+            "b402"
+          ]
+        },
+        {
+          "facilitatorId": "acedatacloud",
+          "scatteringName": "AceDataCloud",
+          "period": "3d",
+          "volumeUsd3d": 0,
+          "txCount3d": 0,
+          "uniqueBuyers3d": 0,
+          "uniqueSellers3d": 0,
+          "volumeUsdAllTime": 38.238686,
+          "chains": [
+            "eip155:8453"
+          ],
+          "volumeChangeRate": 0,
+          "txChangeRate": 0,
+          "buyersChangeRate": 0,
+          "fetchedAt": "2025-12-27T16:01:59.142Z",
+          "scatteringId": 192,
+          "tags": []
+        },
+        {
+          "facilitatorId": "daydreams",
+          "scatteringName": "Daydreams",
+          "period": "3d",
+          "volumeUsd3d": 0,
+          "txCount3d": 0,
+          "uniqueBuyers3d": 0,
+          "uniqueSellers3d": 0,
+          "volumeUsdAllTime": 2757578.5,
+          "chains": [
+            "solana:mainnet",
+            "eip155:8453"
+          ],
+          "marketCap": 6253485.25639199,
+          "volumeChangeRate": -100,
+          "txChangeRate": -100,
+          "buyersChangeRate": -100,
+          "fetchedAt": "2025-12-27T16:01:59.142Z",
+          "scatteringId": 216,
+          "tags": [
+            "Facilitator"
+          ]
+        },
+        {
+          "facilitatorId": "aurracloud",
+          "scatteringName": "AurraCloud",
+          "period": "3d",
+          "volumeUsd3d": 0,
+          "txCount3d": 0,
+          "uniqueBuyers3d": 0,
+          "uniqueSellers3d": 0,
+          "volumeUsdAllTime": 53742.77,
+          "chains": [
+            "eip155:8453",
+            "solana:mainnet"
+          ],
+          "marketCap": 754063.776554428,
+          "volumeChangeRate": 0,
+          "txChangeRate": 0,
+          "buyersChangeRate": 0,
+          "fetchedAt": "2025-12-27T16:01:59.142Z",
+          "scatteringId": 138,
+          "tags": [
+            "Facilitator"
+          ]
+        },
+        {
+          "facilitatorId": "x402bscan",
+          "scatteringName": "x402Bscan",
+          "period": "3d",
+          "volumeUsd3d": 0,
+          "txCount3d": 0,
+          "uniqueBuyers3d": 0,
+          "uniqueSellers3d": 0,
+          "volumeUsdAllTime": 43963.824,
+          "chains": [
+            "eip155:56"
+          ],
+          "marketCap": 11460.612524821,
+          "volumeChangeRate": 0,
+          "txChangeRate": 0,
+          "buyersChangeRate": 0,
+          "fetchedAt": "2025-12-27T16:01:59.142Z",
+          "scatteringId": 176,
+          "tags": [
+            "b402"
+          ]
+        },
+        {
+          "facilitatorId": "x402rs",
+          "scatteringName": "x402rs",
+          "period": "3d",
+          "volumeUsd3d": 0,
+          "txCount3d": 0,
+          "uniqueBuyers3d": 0,
+          "uniqueSellers3d": 0,
+          "volumeUsdAllTime": 468279.72,
+          "chains": [
+            "eip155:8453"
+          ],
+          "volumeChangeRate": 0,
+          "txChangeRate": 0,
+          "buyersChangeRate": 0,
+          "fetchedAt": "2025-12-27T16:01:59.142Z",
+          "scatteringId": 136,
+          "tags": [
+            "Facilitator"
+          ]
+        }
+      ]
+    },
+    {
+      "fetchedAt": "2025-12-27T15:45:10.333Z",
+      "metrics": [
+        {
+          "facilitatorId": "pieverse",
+          "scatteringName": "Pieverse",
+          "period": "3d",
+          "volumeUsd3d": 268450.2,
+          "txCount3d": 18074,
+          "uniqueBuyers3d": 8348,
+          "uniqueSellers3d": 8370,
+          "volumeUsdAllTime": 3618749.5,
+          "chains": [
+            "eip155:56",
+            "eip155:8453"
+          ],
+          "volumeChangeRate": 177.0215801146432,
+          "txChangeRate": 108.75490875490877,
+          "buyersChangeRate": 71.45204354076813,
+          "fetchedAt": "2025-12-27T15:45:10.330Z",
+          "scatteringId": 174,
+          "tags": [
+            "x402b"
+          ]
+        },
+        {
+          "facilitatorId": "dexter",
+          "scatteringName": "Dexter",
+          "period": "3d",
+          "volumeUsd3d": 138982.552,
+          "txCount3d": 2061127,
+          "uniqueBuyers3d": 2030,
+          "uniqueSellers3d": 9,
+          "volumeUsdAllTime": 4690194,
+          "chains": [
+            "solana:mainnet"
+          ],
+          "marketCap": 2334453.1224795906,
+          "volumeChangeRate": -25.83953634094542,
+          "txChangeRate": -0.2610666617630976,
+          "buyersChangeRate": 58.84194053208138,
+          "fetchedAt": "2025-12-27T15:45:10.330Z",
+          "scatteringId": 144,
+          "tags": [
+            "Facilitator"
+          ]
+        },
+        {
+          "facilitatorId": "cdp",
+          "scatteringName": "Coinbase",
+          "period": "3d",
+          "volumeUsd3d": 137535.793,
+          "txCount3d": 3027262,
+          "uniqueBuyers3d": 8151,
+          "uniqueSellers3d": 987,
+          "volumeUsdAllTime": 26424512,
+          "chains": [
+            "eip155:8453",
+            "solana:mainnet"
+          ],
+          "volumeChangeRate": 27.257601227987372,
+          "txChangeRate": 12.357681452899966,
+          "buyersChangeRate": -39.13530465949821,
+          "fetchedAt": "2025-12-27T15:45:10.330Z",
+          "scatteringId": 134,
+          "tags": [
+            "Facilitator"
+          ]
+        },
+        {
+          "facilitatorId": "payai",
+          "scatteringName": "PayAI Network",
+          "period": "3d",
+          "volumeUsd3d": 107661.857,
+          "txCount3d": 1243696,
+          "uniqueBuyers3d": 9694,
+          "uniqueSellers3d": 338,
+          "volumeUsdAllTime": 4795050.5,
+          "chains": [
+            "eip155:8453",
+            "solana:mainnet",
+            "eip155:137"
+          ],
+          "marketCap": 12586639.024067642,
+          "volumeChangeRate": 31.466922327932057,
+          "txChangeRate": 23.404821108573177,
+          "buyersChangeRate": -5.091051497943998,
+          "fetchedAt": "2025-12-27T15:45:10.330Z",
+          "scatteringId": 135,
+          "tags": [
+            "Facilitator"
+          ]
+        },
+        {
+          "facilitatorId": "codenut",
+          "scatteringName": "CodeNutPay",
+          "period": "3d",
+          "volumeUsd3d": 5720.180707,
+          "txCount3d": 11184,
+          "uniqueBuyers3d": 6138,
+          "uniqueSellers3d": 9,
+          "volumeUsdAllTime": 109640.64,
+          "chains": [
+            "eip155:8453",
+            "solana:mainnet"
+          ],
+          "volumeChangeRate": 22413.825946468707,
+          "txChangeRate": 418.49791376912384,
+          "buyersChangeRate": 564.2857142857143,
+          "fetchedAt": "2025-12-27T15:45:10.330Z",
+          "scatteringId": 133,
+          "tags": [
+            "Facilitator"
+          ]
+        },
+        {
+          "facilitatorId": "openx402",
+          "scatteringName": "Open x402",
+          "period": "3d",
+          "volumeUsd3d": 3027.28565,
+          "txCount3d": 33673,
+          "uniqueBuyers3d": 264,
+          "uniqueSellers3d": 12,
+          "volumeUsdAllTime": 192408.19,
+          "chains": [
+            "eip155:8453",
+            "solana:mainnet"
+          ],
+          "volumeChangeRate": 120.58470474597675,
+          "txChangeRate": 63.81105273399494,
+          "buyersChangeRate": 0,
+          "fetchedAt": "2025-12-27T15:45:10.330Z",
+          "scatteringId": 141,
+          "tags": [
+            "Facilitator"
+          ]
+        },
+        {
+          "facilitatorId": "virtuals",
+          "scatteringName": "Virtuals Protocol",
+          "period": "3d",
+          "volumeUsd3d": 1477.03304,
+          "txCount3d": 4859,
+          "uniqueBuyers3d": 824,
+          "uniqueSellers3d": 6,
+          "volumeUsdAllTime": 1329430,
+          "chains": [
+            "eip155:8453"
+          ],
+          "marketCap": 702484105.136175,
+          "volumeChangeRate": -94.5403877084626,
+          "txChangeRate": -91.40623618259316,
+          "buyersChangeRate": -56.51715039577836,
+          "fetchedAt": "2025-12-27T15:45:10.330Z",
+          "scatteringId": 183,
+          "tags": [
+            "Launchpad",
+            "Framework",
+            "Virtuals Eco",
+            "Grayscale"
+          ]
+        },
+        {
+          "facilitatorId": "questflow",
+          "scatteringName": "Questflow",
+          "period": "3d",
+          "volumeUsd3d": 220.332715,
+          "txCount3d": 9173,
+          "uniqueBuyers3d": 4394,
+          "uniqueSellers3d": 95,
+          "volumeUsdAllTime": 5335.536,
+          "chains": [
+            "eip155:8453"
+          ],
+          "volumeChangeRate": -32.47518088172296,
+          "txChangeRate": -33.02913046652552,
+          "buyersChangeRate": -19.138755980861244,
+          "fetchedAt": "2025-12-27T15:45:10.330Z",
+          "scatteringId": 148,
+          "tags": [
+            "Facilitator"
+          ]
+        },
+        {
+          "facilitatorId": "x402jobs",
+          "scatteringName": "x402jobs",
+          "period": "3d",
+          "volumeUsd3d": 125.914657,
+          "txCount3d": 3237,
+          "uniqueBuyers3d": 28,
+          "uniqueSellers3d": 24,
+          "volumeUsdAllTime": 909.9162,
+          "chains": [
+            "solana:mainnet"
+          ],
+          "marketCap": 970294.0999963684,
+          "volumeChangeRate": 511.3821932386344,
+          "txChangeRate": 1090.0735294117646,
+          "buyersChangeRate": 64.70588235294117,
+          "fetchedAt": "2025-12-27T15:45:10.330Z",
+          "scatteringId": 213,
+          "tags": [
+            "x402"
+          ]
+        },
+        {
+          "facilitatorId": "mogami",
+          "scatteringName": "Mogami",
+          "period": "3d",
+          "volumeUsd3d": 71.02770849999999,
+          "txCount3d": 6,
+          "uniqueBuyers3d": 3,
+          "uniqueSellers3d": 5,
+          "volumeUsdAllTime": 277387.62,
+          "chains": [
+            "eip155:8453"
+          ],
+          "volumeChangeRate": 425.11515404583287,
+          "txChangeRate": -45.45454545454545,
+          "buyersChangeRate": -40,
+          "fetchedAt": "2025-12-27T15:45:10.330Z",
+          "scatteringId": 140,
+          "tags": [
+            "Facilitator"
+          ]
+        },
+        {
+          "facilitatorId": "heurist",
+          "scatteringName": "Heurist",
+          "period": "3d",
+          "volumeUsd3d": 28.118261000000004,
+          "txCount3d": 277423,
+          "uniqueBuyers3d": 7881,
+          "uniqueSellers3d": 8,
+          "volumeUsdAllTime": 12456.155,
+          "chains": [
+            "eip155:8453"
+          ],
+          "marketCap": 2446570.270857236,
+          "volumeChangeRate": 7.698616565164349,
+          "txChangeRate": 8.31081925227223,
+          "buyersChangeRate": -6.9539551357733185,
+          "fetchedAt": "2025-12-27T15:45:10.330Z",
+          "scatteringId": 190,
+          "tags": [
+            "Framework",
+            "MCP",
+            "x402"
+          ]
+        },
+        {
+          "facilitatorId": "thirdweb",
+          "scatteringName": "Thirdweb",
+          "period": "3d",
+          "volumeUsd3d": 22.366904199999997,
+          "txCount3d": 201,
+          "uniqueBuyers3d": 38,
+          "uniqueSellers3d": 26,
+          "volumeUsdAllTime": 114229.17,
+          "chains": [
+            "eip155:8453"
+          ],
+          "volumeChangeRate": -19.394815833050778,
+          "txChangeRate": 103.03030303030303,
+          "buyersChangeRate": 31.03448275862069,
+          "fetchedAt": "2025-12-27T15:45:10.330Z",
+          "scatteringId": 137,
+          "tags": [
+            "Facilitator"
+          ]
+        },
+        {
+          "facilitatorId": "corbits",
+          "scatteringName": "Corbits",
+          "period": "3d",
+          "volumeUsd3d": 13.0740375,
+          "txCount3d": 741,
+          "uniqueBuyers3d": 7,
+          "uniqueSellers3d": 33,
+          "volumeUsdAllTime": 264.96713,
+          "chains": [
+            "solana:mainnet"
+          ],
+          "volumeChangeRate": -11.331494585027754,
+          "txChangeRate": -13.837209302325581,
+          "buyersChangeRate": -12.5,
+          "fetchedAt": "2025-12-27T15:45:10.330Z",
+          "scatteringId": 145,
+          "tags": [
+            "Facilitator"
+          ]
+        },
+        {
+          "facilitatorId": "polygon",
+          "scatteringName": "Polygon",
+          "period": "3d",
+          "volumeUsd3d": 9.7735017,
+          "txCount3d": 11966,
+          "uniqueBuyers3d": 15,
+          "uniqueSellers3d": 6,
+          "volumeUsdAllTime": 564.5924,
+          "chains": [
+            "eip155:137"
+          ],
+          "volumeChangeRate": -8.002542437096787,
+          "txChangeRate": -6.843129622421175,
+          "buyersChangeRate": 0,
+          "fetchedAt": "2025-12-27T15:45:10.330Z",
+          "scatteringId": 196,
+          "tags": []
+        },
+        {
+          "facilitatorId": "anyspend",
+          "scatteringName": "Anyspend",
+          "period": "3d",
+          "volumeUsd3d": 6.2382779,
+          "txCount3d": 41653,
+          "uniqueBuyers3d": 667,
+          "uniqueSellers3d": 4,
+          "volumeUsdAllTime": 94560.34,
+          "chains": [
+            "eip155:8453",
+            "solana:mainnet"
+          ],
+          "volumeChangeRate": -99.91963069825238,
+          "txChangeRate": 262.13701964875673,
+          "buyersChangeRate": -14.377406931964057,
+          "fetchedAt": "2025-12-27T15:45:10.330Z",
+          "scatteringId": 207,
+          "tags": [
+            "Facilitator"
+          ]
+        },
+        {
+          "facilitatorId": "treasure",
+          "scatteringName": "Treasure",
+          "period": "3d",
+          "volumeUsd3d": 4.1830995,
+          "txCount3d": 15,
+          "uniqueBuyers3d": 9,
+          "uniqueSellers3d": 7,
+          "volumeUsdAllTime": 228.15009,
+          "chains": [
+            "eip155:8453"
+          ],
+          "marketCap": 33583975.31145156,
+          "volumeChangeRate": -85.1951802885229,
+          "txChangeRate": -60.526315789473685,
+          "buyersChangeRate": -10,
+          "fetchedAt": "2025-12-27T15:45:10.330Z",
+          "scatteringId": 191,
+          "tags": []
+        },
+        {
+          "facilitatorId": "ultravioletadao",
+          "scatteringName": "Ultravioleta DAO",
+          "period": "3d",
+          "volumeUsd3d": 3.94503214,
+          "txCount3d": 174,
+          "uniqueBuyers3d": 19,
+          "uniqueSellers3d": 25,
+          "volumeUsdAllTime": 227.32121,
+          "chains": [
+            "eip155:8453",
+            "solana:mainnet"
+          ],
+          "volumeChangeRate": 82.43296239796403,
+          "txChangeRate": 155.88235294117646,
+          "buyersChangeRate": 171.42857142857142,
+          "fetchedAt": "2025-12-27T15:45:10.330Z",
+          "scatteringId": 173,
+          "tags": [
+            "Facilitator"
+          ]
+        },
+        {
+          "facilitatorId": "xecho",
+          "scatteringName": "xEcho",
+          "period": "3d",
+          "volumeUsd3d": 1.1003418,
+          "txCount3d": 55,
+          "uniqueBuyers3d": 3,
+          "uniqueSellers3d": 5,
+          "volumeUsdAllTime": 444.78354,
+          "chains": [
+            "eip155:8453"
+          ],
+          "volumeChangeRate": 110.03418,
+          "txChangeRate": 5500,
+          "buyersChangeRate": 300,
+          "fetchedAt": "2025-12-27T15:45:10.330Z",
+          "scatteringId": 149,
+          "tags": [
+            "Facilitator"
+          ]
+        },
+        {
+          "facilitatorId": "unibase",
+          "scatteringName": "Unibase",
+          "period": "3d",
+          "volumeUsd3d": 0.050300000000000004,
+          "txCount3d": 68,
+          "uniqueBuyers3d": 3,
+          "uniqueSellers3d": 15,
+          "volumeUsdAllTime": 13.416166,
+          "chains": [
+            "eip155:56"
+          ],
+          "marketCap": 161015133.1622351,
+          "volumeChangeRate": 18.316750170536096,
+          "txChangeRate": 112.5,
+          "buyersChangeRate": -40,
+          "fetchedAt": "2025-12-27T15:45:10.330Z",
+          "scatteringId": 188,
+          "tags": [
+            "x402"
+          ]
+        },
+        {
+          "facilitatorId": "openmid",
+          "scatteringName": "OpenMid",
+          "period": "3d",
+          "volumeUsd3d": 0.0010004237,
+          "txCount3d": 2,
+          "uniqueBuyers3d": 2,
+          "uniqueSellers3d": 2,
+          "volumeUsdAllTime": 0.019006237,
+          "chains": [
+            "eip155:8453"
+          ],
+          "volumeChangeRate": -79.99810182404433,
+          "txChangeRate": -60,
+          "buyersChangeRate": 0,
+          "fetchedAt": "2025-12-27T15:45:10.330Z",
+          "scatteringId": 218,
+          "tags": []
+        },
+        {
+          "facilitatorId": "altlayer",
+          "scatteringName": "AltLayer",
+          "period": "3d",
+          "volumeUsd3d": 0,
+          "txCount3d": 0,
+          "uniqueBuyers3d": 0,
+          "uniqueSellers3d": 0,
+          "volumeUsdAllTime": 11.378117,
+          "chains": [
+            "eip155:8453"
+          ],
+          "volumeChangeRate": 0,
+          "txChangeRate": 0,
+          "buyersChangeRate": 0,
+          "fetchedAt": "2025-12-27T15:45:10.330Z",
+          "scatteringId": 197,
+          "tags": []
+        },
+        {
+          "facilitatorId": "b402",
+          "scatteringName": "b402",
+          "period": "3d",
+          "volumeUsd3d": 0,
+          "txCount3d": 0,
+          "uniqueBuyers3d": 0,
+          "uniqueSellers3d": 0,
+          "volumeUsdAllTime": 210796.77,
+          "chains": [
+            "eip155:56"
+          ],
+          "volumeChangeRate": 0,
+          "txChangeRate": 0,
+          "buyersChangeRate": 0,
+          "fetchedAt": "2025-12-27T15:45:10.330Z",
+          "scatteringId": 175,
+          "tags": [
+            "b402"
+          ]
+        },
+        {
+          "facilitatorId": "x444",
+          "scatteringName": "x444",
+          "period": "3d",
+          "volumeUsd3d": 0,
+          "txCount3d": 0,
+          "uniqueBuyers3d": 0,
+          "uniqueSellers3d": 0,
+          "volumeUsdAllTime": 39.927307,
+          "chains": [
+            "eip155:56"
+          ],
+          "marketCap": 11918.562482619,
+          "volumeChangeRate": 0,
+          "txChangeRate": 0,
+          "buyersChangeRate": 0,
+          "fetchedAt": "2025-12-27T15:45:10.330Z",
+          "scatteringId": 177,
+          "tags": [
+            "b402"
+          ]
+        },
+        {
+          "facilitatorId": "acedatacloud",
+          "scatteringName": "AceDataCloud",
+          "period": "3d",
+          "volumeUsd3d": 0,
+          "txCount3d": 0,
+          "uniqueBuyers3d": 0,
+          "uniqueSellers3d": 0,
+          "volumeUsdAllTime": 38.238686,
+          "chains": [
+            "eip155:8453"
+          ],
+          "volumeChangeRate": 0,
+          "txChangeRate": 0,
+          "buyersChangeRate": 0,
+          "fetchedAt": "2025-12-27T15:45:10.330Z",
+          "scatteringId": 192,
+          "tags": []
+        },
+        {
+          "facilitatorId": "daydreams",
+          "scatteringName": "Daydreams",
+          "period": "3d",
+          "volumeUsd3d": 0,
+          "txCount3d": 0,
+          "uniqueBuyers3d": 0,
+          "uniqueSellers3d": 0,
+          "volumeUsdAllTime": 2757578.5,
+          "chains": [
+            "solana:mainnet",
+            "eip155:8453"
+          ],
+          "marketCap": 6090660.226452611,
+          "volumeChangeRate": -100,
+          "txChangeRate": -100,
+          "buyersChangeRate": -100,
+          "fetchedAt": "2025-12-27T15:45:10.330Z",
+          "scatteringId": 216,
+          "tags": [
+            "Facilitator"
+          ]
+        },
+        {
+          "facilitatorId": "aurracloud",
+          "scatteringName": "AurraCloud",
+          "period": "3d",
+          "volumeUsd3d": 0,
+          "txCount3d": 0,
+          "uniqueBuyers3d": 0,
+          "uniqueSellers3d": 0,
+          "volumeUsdAllTime": 53742.77,
+          "chains": [
+            "eip155:8453",
+            "solana:mainnet"
+          ],
+          "marketCap": 754063.776554428,
+          "volumeChangeRate": 0,
+          "txChangeRate": 0,
+          "buyersChangeRate": 0,
+          "fetchedAt": "2025-12-27T15:45:10.330Z",
+          "scatteringId": 138,
+          "tags": [
+            "Facilitator"
+          ]
+        },
+        {
+          "facilitatorId": "x402bscan",
+          "scatteringName": "x402Bscan",
+          "period": "3d",
+          "volumeUsd3d": 0,
+          "txCount3d": 0,
+          "uniqueBuyers3d": 0,
+          "uniqueSellers3d": 0,
+          "volumeUsdAllTime": 43963.824,
+          "chains": [
+            "eip155:56"
+          ],
+          "marketCap": 11460.612524821,
+          "volumeChangeRate": 0,
+          "txChangeRate": 0,
+          "buyersChangeRate": 0,
+          "fetchedAt": "2025-12-27T15:45:10.330Z",
+          "scatteringId": 176,
+          "tags": [
+            "b402"
+          ]
+        },
+        {
+          "facilitatorId": "x402rs",
+          "scatteringName": "x402rs",
+          "period": "3d",
+          "volumeUsd3d": 0,
+          "txCount3d": 0,
+          "uniqueBuyers3d": 0,
+          "uniqueSellers3d": 0,
+          "volumeUsdAllTime": 468279.72,
+          "chains": [
+            "eip155:8453"
+          ],
+          "volumeChangeRate": 0,
+          "txChangeRate": 0,
+          "buyersChangeRate": 0,
+          "fetchedAt": "2025-12-27T15:45:10.330Z",
+          "scatteringId": 136,
+          "tags": [
+            "Facilitator"
+          ]
+        }
+      ]
+    }
+  ]
+}

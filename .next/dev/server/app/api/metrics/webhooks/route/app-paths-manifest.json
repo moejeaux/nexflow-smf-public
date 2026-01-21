@@ -1,0 +1,3 @@
+{
+  "/api/metrics/webhooks/route": "app/api/metrics/webhooks/route.js"
+}

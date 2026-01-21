@@ -1,0 +1,3 @@
+module.exports=[87924,(a,b,c)=>{"use strict";b.exports=a.r(42602).vendored["react-ssr"].ReactJsxRuntime},57178,a=>{"use strict";var b=a.i(87924),c=a.i(72131),d=a.i(50944);function e(){let a=(0,d.useRouter)();return(0,c.useEffect)(()=>{a.replace("/docs?section=x402jobs-onboard")},[a]),(0,b.jsx)("div",{className:"min-h-screen bg-gray-950 text-white flex items-center justify-center",children:(0,b.jsx)("div",{className:"text-center",children:(0,b.jsx)("p",{className:"text-gray-400",children:"Redirecting to docs..."})})})}a.s(["default",()=>e])}];
+
+//# sourceMappingURL=_2137e3df._.js.map

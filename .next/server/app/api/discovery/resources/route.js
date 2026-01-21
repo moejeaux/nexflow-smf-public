@@ -1,0 +1,12 @@
+var R=require("../../../../chunks/[turbopack]_runtime.js")("server/app/api/discovery/resources/route.js")
+R.c("server/chunks/[root-of-the-server]__a765e8f6._.js")
+R.c("server/chunks/[root-of-the-server]__8faa9c1f._.js")
+R.c("server/chunks/src_integrations_x402_75d3e0c5._.js")
+R.c("server/chunks/[root-of-the-server]__e9c70ed4._.js")
+R.c("server/chunks/[root-of-the-server]__db2b3a24._.js")
+R.c("server/chunks/node_modules_@coinbase_cdp-sdk__esm_auth_utils_jwt_83481f05.js")
+R.c("server/chunks/node_modules_viem__esm_6afb56d2._.js")
+R.c("server/chunks/_991dd054._.js")
+R.c("server/chunks/_next-internal_server_app_api_discovery_resources_route_actions_64b7f5be.js")
+R.m(63725)
+module.exports=R.m(63725).exports

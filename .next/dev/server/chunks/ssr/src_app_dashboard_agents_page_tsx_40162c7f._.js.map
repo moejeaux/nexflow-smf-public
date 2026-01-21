@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/meaux/CascadeProjects/my%20second%20project/CascadeProjects/windsurf-project/nexflow-deploy/src/app/dashboard/agents/page.tsx"],"sourcesContent":["// src/app/dashboard/agents/page.tsx\r\n'use client'\r\n\r\nexport default function AgentsPage() {\r\n  return (\r\n    <main style={{ padding: \"2rem\", fontFamily: \"system-ui, sans-serif\" }}>\r\n      <h1 style={{ fontSize: \"1.75rem\", marginBottom: \"0.5rem\" }}>\r\n        Agents page test\r\n      </h1>\r\n      <p>If you can see this, /dashboard/agents is wired correctly.</p>\r\n    </main>\r\n  );\r\n}\r\n"],"names":[],"mappings":"AAAA,oCAAoC;;;;;;AACpC;;AAEe,SAAS;IACtB,qBACE,8OAAC;QAAK,OAAO;YAAE,SAAS;YAAQ,YAAY;QAAwB;;0BAClE,8OAAC;gBAAG,OAAO;oBAAE,UAAU;oBAAW,cAAc;gBAAS;0BAAG;;;;;;0BAG5D,8OAAC;0BAAE;;;;;;;;;;;;AAGT"}}]
+}

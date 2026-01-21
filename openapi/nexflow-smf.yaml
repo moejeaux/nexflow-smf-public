@@ -1,0 +1,1000 @@
+openapi: 3.1.0
+info:
+  title: NexFlow SMF API
+  version: 1.0.0
+  description: |
+    NexFlow Smart Meta-Facilitator (SMF) API for intelligent payment routing, 
+    verification, and settlement across multiple facilitators.
+    
+    ## Authentication
+    
+    All endpoints require API key authentication via one of:
+    - `x-api-key` header (recommended)
+    - `Authorization: Bearer <key>` header
+    
+    API keys follow the format:
+    - `nf_live_*` for production
+    - `nf_test_*` for testing
+    
+    ## Getting Started
+    
+    1. Create an account and API key:
+       ```bash
+       npx tsx scripts/onboard-account-and-key.ts --email dev@example.com
+       ```
+    
+    2. Set your API key:
+       ```bash
+       export NEXFLOW_API_KEY="nf_live_..."
+       ```
+    
+    3. Make your first API call:
+       ```bash
+       curl -X GET https://api.nexflowapp.app/api/v1/smf/health \
+         -H "x-api-key: $NEXFLOW_API_KEY"
+       ```
+  contact:
+    name: NexFlow Support
+    url: https://nexflowapp.app
+    email: support@nexflow.app
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: https://api.nexflowapp.app
+    description: Production API
+  - url: http://localhost:3000
+    description: Local development
+
+security:
+  - ApiKeyHeader: []
+  - BearerAuth: []
+
+components:
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key in x-api-key header (recommended)
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: API key as Bearer token in Authorization header
+
+  schemas:
+    # =========================================================================
+    # Route API
+    # =========================================================================
+    SMFRouteRequest:
+      type: object
+      required:
+        - amount_wei
+        - token_address
+        - chain_id
+      properties:
+        amount_wei:
+          type: string
+          description: Amount in atomic units (wei for ETH, 6 decimals for USDC)
+          example: "1000000"
+        token_address:
+          type: string
+          description: Token contract address
+          example: "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
+        chain_id:
+          type: string
+          description: Chain ID in CAIP-2 format
+          example: "eip155:8453"
+        payment_id:
+          type: string
+          description: Optional payment ID for idempotency
+        recipient_address:
+          type: string
+          description: Optional recipient address override
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: Optional metadata key-value pairs
+
+    SMFRouteResponse:
+      type: object
+      required:
+        - facilitator_id
+        - path
+        - expected_fee_wei
+        - fee_breakdown
+        - estimated_latency_ms
+        - confidence
+        - quote_expires_at
+        - quote_id
+      properties:
+        facilitator_id:
+          type: string
+          description: Selected facilitator ID
+          example: "cdp"
+        path:
+          type: string
+          enum: [direct, scored, fallback]
+          description: Routing path type
+        expected_fee_wei:
+          type: string
+          description: Expected fee in atomic units
+          example: "2500"
+        fee_breakdown:
+          $ref: '#/components/schemas/SettlementFeeBreakdown'
+        estimated_latency_ms:
+          type: integer
+          description: Estimated latency in milliseconds
+          example: 250
+        confidence:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 1
+          description: Confidence score (0-1)
+          example: 0.95
+        quote_expires_at:
+          type: string
+          format: date-time
+          description: Quote expiration timestamp (ISO 8601)
+        quote_id:
+          type: string
+          description: Quote ID for subsequent verify/settle calls
+        protection:
+          $ref: '#/components/schemas/PaymentProtection'
+
+    # =========================================================================
+    # Verify API
+    # =========================================================================
+    SMFVerifyRequest:
+      type: object
+      required:
+        - quote_id
+        - tx_hash
+        - chain_id
+        - expected_amount_wei
+        - expected_recipient
+      properties:
+        quote_id:
+          type: string
+          description: Quote ID from route response
+        tx_hash:
+          type: string
+          description: Transaction hash to verify (66-char hex starting with 0x)
+          example: "0x1234567890abcdef..."
+        chain_id:
+          type: string
+          description: Chain ID in CAIP-2 format
+          example: "eip155:8453"
+        expected_amount_wei:
+          type: string
+          description: Expected amount in atomic units
+        expected_recipient:
+          type: string
+          description: Expected recipient address
+        facilitator_id:
+          type: string
+          description: Optional specific facilitator for verification
+
+    SMFVerifyResponse:
+      type: object
+      required:
+        - verified
+        - status
+        - tx_hash
+        - amount_wei
+        - recipient
+        - facilitator_id
+        - verification_latency_ms
+      properties:
+        verified:
+          type: boolean
+          description: Whether payment is verified
+        status:
+          type: string
+          enum: [confirmed, pending, failed, expired]
+          description: Verification status
+        tx_hash:
+          type: string
+          description: Transaction hash
+        amount_wei:
+          type: string
+          description: Actual amount received in atomic units
+        recipient:
+          type: string
+          description: Recipient address
+        block_number:
+          type: integer
+          description: Block number of confirmation
+        block_timestamp:
+          type: string
+          format: date-time
+          description: Block timestamp
+        facilitator_id:
+          type: string
+          description: Facilitator that performed verification
+        verification_latency_ms:
+          type: integer
+          description: Verification latency in ms
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+
+    # =========================================================================
+    # Settle API
+    # =========================================================================
+    SMFSettleRequest:
+      type: object
+      required:
+        - quote_id
+        - tx_hash
+        - amount_wei
+        - fee_wei
+        - payout_recipient
+      properties:
+        quote_id:
+          type: string
+          description: Quote ID from route response
+        tx_hash:
+          type: string
+          description: Verified transaction hash
+        batch_id:
+          type: string
+          description: Optional batch ID for grouped settlements
+        amount_wei:
+          type: string
+          description: Final amount to settle in atomic units
+        fee_wei:
+          type: string
+          description: Fee amount in atomic units
+        payout_recipient:
+          type: string
+          description: Address to receive the payout
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+
+    SMFSettleResponse:
+      type: object
+      required:
+        - settlement_id
+        - status
+        - quote_id
+        - tx_hash
+        - net_amount_wei
+        - fee_wei
+        - fee_breakdown
+      properties:
+        settlement_id:
+          type: string
+          description: Settlement ID
+        status:
+          type: string
+          enum: [pending, processing, completed, failed]
+          description: Settlement status
+        quote_id:
+          type: string
+          description: Original quote ID
+        tx_hash:
+          type: string
+          description: Transaction hash
+        net_amount_wei:
+          type: string
+          description: Net amount after fees in atomic units
+        fee_wei:
+          type: string
+          description: Fee amount in atomic units
+        payout_tx_hash:
+          type: string
+          description: Payout transaction hash (if completed)
+        estimated_completion:
+          type: string
+          format: date-time
+          description: Estimated completion time
+        fee_breakdown:
+          $ref: '#/components/schemas/SettlementFeeBreakdown'
+
+    # =========================================================================
+    # Health API
+    # =========================================================================
+    SMFHealthResponse:
+      type: object
+      required:
+        - status
+        - summary
+        - facilitators
+        - timestamp
+      properties:
+        status:
+          type: string
+          enum: [healthy, degraded, down]
+          description: Overall system status
+        summary:
+          type: object
+          required:
+            - total
+            - healthy
+            - degraded
+            - down
+          properties:
+            total:
+              type: integer
+              description: Total facilitator count
+            healthy:
+              type: integer
+              description: Healthy facilitator count
+            degraded:
+              type: integer
+              description: Degraded facilitator count
+            down:
+              type: integer
+              description: Down facilitator count
+        facilitators:
+          type: array
+          items:
+            $ref: '#/components/schemas/FacilitatorHealth'
+        timestamp:
+          type: string
+          format: date-time
+
+    FacilitatorHealth:
+      type: object
+      required:
+        - facilitator_id
+        - name
+        - status
+      properties:
+        facilitator_id:
+          type: string
+        name:
+          type: string
+        status:
+          type: string
+          enum: [healthy, degraded, down]
+        reasons:
+          type: array
+          items:
+            type: string
+        metrics:
+          type: object
+          properties:
+            success_rate:
+              type: number
+            p95_latency_ms:
+              type: integer
+            error_rate:
+              type: number
+            last_error_type:
+              type: string
+            last_updated:
+              type: string
+              format: date-time
+
+    # =========================================================================
+    # Facilitators API
+    # =========================================================================
+    SMFFacilitatorsResponse:
+      type: object
+      required:
+        - facilitators
+        - count
+      properties:
+        facilitators:
+          type: array
+          items:
+            $ref: '#/components/schemas/Facilitator'
+        count:
+          type: integer
+        timestamp:
+          type: string
+          format: date-time
+
+    Facilitator:
+      type: object
+      required:
+        - id
+        - name
+        - status
+        - supported_chains
+        - supported_tokens
+        - fee_bps
+        - features
+      properties:
+        id:
+          type: string
+          example: "cdp"
+        name:
+          type: string
+          example: "Coinbase Developer Platform"
+        description:
+          type: string
+        status:
+          type: string
+          enum: [active, inactive, maintenance]
+        supported_chains:
+          type: array
+          items:
+            type: string
+          example: ["eip155:8453", "eip155:84532"]
+        supported_tokens:
+          type: array
+          items:
+            type: string
+          example: ["USDC"]
+        fee_bps:
+          type: integer
+          description: Fee in basis points (100 = 1%)
+          example: 25
+        min_amount_wei:
+          type: string
+        max_amount_wei:
+          type: string
+        features:
+          type: array
+          items:
+            type: string
+          example: ["instant-settlement", "multi-chain"]
+
+    # =========================================================================
+    # Shared Types
+    # =========================================================================
+    SettlementFeeBreakdown:
+      type: object
+      required:
+        - platform_fee_wei
+        - total_fee_wei
+      properties:
+        platform_fee_wei:
+          type: string
+          description: Platform fee in atomic units
+        insurance_fee_wei:
+          type: string
+          description: Optional insurance fee
+        network_fee_wei:
+          type: string
+          description: Optional network fee
+        total_fee_wei:
+          type: string
+          description: Total fee in atomic units
+
+    PaymentProtection:
+      type: object
+      required:
+        - level
+        - circuit_breaker_state
+        - facilitator_health
+        - success_rate_7d
+        - anomaly_detection_active
+      properties:
+        level:
+          type: string
+          enum: [none, automatic, manual]
+        circuit_breaker_state:
+          type: string
+          enum: [CLOSED, HALF_OPEN, OPEN]
+        facilitator_health:
+          type: string
+          enum: [normal, suspect, degraded]
+        success_rate_7d:
+          type: number
+          format: float
+        anomaly_detection_active:
+          type: boolean
+
+    SMFErrorResponse:
+      type: object
+      required:
+        - error
+        - message
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: "UNAUTHORIZED"
+        message:
+          type: string
+          description: Human-readable error message
+        code:
+          type: string
+          description: Optional specific error code
+        details:
+          type: object
+          additionalProperties: true
+        request_id:
+          type: string
+
+    # =========================================================================
+    # Webhook Types
+    # =========================================================================
+    WebhookEventType:
+      type: string
+      enum:
+        - payment.verified
+        - payment.failed
+        - usage.recorded
+        - session.completed
+        - endpoint.created
+        - endpoint.updated
+        - endpoint.deleted
+      description: Type of webhook event
+
+    WebhookCreateRequest:
+      type: object
+      required:
+        - url
+        - events
+      properties:
+        url:
+          type: string
+          format: uri
+          description: Webhook endpoint URL (must be HTTPS in production)
+          example: "https://api.yoursite.com/webhooks/nexflow"
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/WebhookEventType'
+          description: Event types to subscribe to
+          example: ["payment.verified", "payment.failed"]
+        endpointId:
+          type: string
+          description: Optional endpoint ID to scope webhook
+        enabled:
+          type: boolean
+          default: true
+          description: Whether webhook is enabled
+
+    Webhook:
+      type: object
+      required:
+        - id
+        - url
+        - events
+        - enabled
+        - createdAt
+        - updatedAt
+      properties:
+        id:
+          type: string
+          description: Unique webhook ID
+          example: "wh_1737331200_abc123"
+        url:
+          type: string
+          format: uri
+          description: Webhook endpoint URL
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/WebhookEventType'
+          description: Subscribed event types
+        endpointId:
+          type: string
+          description: Optional endpoint ID this webhook is scoped to
+        enabled:
+          type: boolean
+          description: Whether webhook is enabled
+        secret:
+          type: string
+          description: Signing secret (only returned on creation)
+        createdAt:
+          type: string
+          format: date-time
+          description: Creation timestamp
+        updatedAt:
+          type: string
+          format: date-time
+          description: Last update timestamp
+
+    WebhookListResponse:
+      type: object
+      required:
+        - webhooks
+        - count
+      properties:
+        webhooks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Webhook'
+          description: List of webhook configurations
+        count:
+          type: integer
+          description: Total count of webhooks
+
+paths:
+  # ===========================================================================
+  # POST /api/v1/smf/route
+  # ===========================================================================
+  /api/v1/smf/route:
+    post:
+      operationId: smf_route
+      summary: Route a payment
+      description: |
+        Routes a payment to the best available facilitator based on amount, 
+        token, and chain. Returns a quote with facilitator selection, fees, 
+        and a quote_id for subsequent verification and settlement.
+        
+        **Idempotency**: If `payment_id` or `Idempotency-Key` header is provided,
+        repeated calls return the same cached response for 5 minutes.
+      tags:
+        - SMF Core
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SMFRouteRequest'
+            examples:
+              usdc_base:
+                summary: Route 1 USDC on Base
+                value:
+                  amount_wei: "1000000"
+                  token_address: "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
+                  chain_id: "eip155:8453"
+      responses:
+        '200':
+          description: Payment routed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SMFRouteResponse'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+              description: Request limit per hour
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining requests in current window
+            X-Cache:
+              schema:
+                type: string
+                enum: [HIT, MISS]
+              description: Whether response was served from idempotency cache
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SMFErrorResponse'
+        '401':
+          description: Missing or invalid API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SMFErrorResponse'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SMFErrorResponse'
+        '503':
+          description: System overloaded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SMFErrorResponse'
+
+  # ===========================================================================
+  # POST /api/v1/smf/verify
+  # ===========================================================================
+  /api/v1/smf/verify:
+    post:
+      operationId: smf_verify
+      summary: Verify a payment
+      description: |
+        Verifies that a cryptocurrency payment transaction was successfully 
+        completed on-chain. Requires a quote_id from a previous route call.
+      tags:
+        - SMF Core
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SMFVerifyRequest'
+      responses:
+        '200':
+          description: Verification result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SMFVerifyResponse'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SMFErrorResponse'
+        '401':
+          description: Missing or invalid API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SMFErrorResponse'
+
+  # ===========================================================================
+  # POST /api/v1/smf/settle
+  # ===========================================================================
+  /api/v1/smf/settle:
+    post:
+      operationId: smf_settle
+      summary: Settle a payment
+      description: |
+        Settles a verified payment, triggering the payout to the merchant/recipient.
+        Only call this after successful verification via `/api/v1/smf/verify`.
+      tags:
+        - SMF Core
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SMFSettleRequest'
+      responses:
+        '200':
+          description: Settlement result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SMFSettleResponse'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SMFErrorResponse'
+        '401':
+          description: Missing or invalid API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SMFErrorResponse'
+        '404':
+          description: Batch not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SMFErrorResponse'
+        '503':
+          description: Settlement not configured or system overloaded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SMFErrorResponse'
+
+  # ===========================================================================
+  # GET /api/v1/smf/health
+  # ===========================================================================
+  /api/v1/smf/health:
+    get:
+      operationId: smf_health
+      summary: Get SMF health status
+      description: |
+        Returns the current health status of the SMF system, including 
+        per-facilitator health metrics. Use this for monitoring and dashboards.
+      tags:
+        - SMF Observability
+      responses:
+        '200':
+          description: Health status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SMFHealthResponse'
+              examples:
+                healthy:
+                  summary: All systems healthy
+                  value:
+                    status: "healthy"
+                    summary:
+                      total: 2
+                      healthy: 2
+                      degraded: 0
+                      down: 0
+                    facilitators:
+                      - facilitator_id: "cdp"
+                        name: "Coinbase Developer Platform"
+                        status: "healthy"
+                        metrics:
+                          success_rate: 0.998
+                          p95_latency_ms: 250
+                          error_rate: 0.002
+                    timestamp: "2026-01-20T00:00:00Z"
+        '401':
+          description: Missing or invalid API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SMFErrorResponse'
+
+  # ===========================================================================
+  # GET /api/v1/smf/facilitators
+  # ===========================================================================
+  /api/v1/smf/facilitators:
+    get:
+      operationId: smf_list_facilitators
+      summary: List available facilitators
+      description: |
+        Returns metadata about all available payment facilitators, including
+        supported chains, tokens, fees, and current status.
+      tags:
+        - SMF Observability
+      responses:
+        '200':
+          description: List of facilitators
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SMFFacilitatorsResponse'
+        '401':
+          description: Missing or invalid API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SMFErrorResponse'
+
+  # ===========================================================================
+  # POST /api/v1/webhooks
+  # ===========================================================================
+  /api/v1/webhooks:
+    post:
+      operationId: webhook_create
+      summary: Create a webhook
+      description: |
+        Create a webhook configuration to receive async notifications for payment events.
+        Returns a signing secret (shown only once) to verify webhook payloads.
+        
+        **Event Types:**
+        - `payment.verified` - Payment successfully verified
+        - `payment.failed` - Payment verification failed
+        - `usage.recorded` - Usage recorded for metered endpoint
+        - `session.completed` - Payment session completed
+        - `endpoint.created` - New endpoint created
+        - `endpoint.updated` - Endpoint configuration updated
+        - `endpoint.deleted` - Endpoint deleted
+      tags:
+        - Webhooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookCreateRequest'
+            example:
+              url: "https://api.yoursite.com/webhooks/nexflow"
+              events: ["payment.verified", "payment.failed"]
+              enabled: true
+      responses:
+        '201':
+          description: Webhook created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+              example:
+                id: "wh_1737331200_abc123"
+                url: "https://api.yoursite.com/webhooks/nexflow"
+                events: ["payment.verified", "payment.failed"]
+                enabled: true
+                secret: "whsec_abc123..."
+                createdAt: "2026-01-20T00:00:00Z"
+                updatedAt: "2026-01-20T00:00:00Z"
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SMFErrorResponse'
+        '401':
+          description: Missing or invalid API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SMFErrorResponse'
+        '403':
+          description: Webhook limit reached
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SMFErrorResponse'
+
+    get:
+      operationId: webhook_list
+      summary: List webhooks
+      description: |
+        List all webhook configurations for your account. 
+        Optionally filter by endpoint ID.
+      tags:
+        - Webhooks
+      parameters:
+        - name: endpointId
+          in: query
+          description: Filter webhooks by endpoint ID
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of webhooks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookListResponse'
+              example:
+                webhooks:
+                  - id: "wh_1737331200_abc123"
+                    url: "https://api.yoursite.com/webhooks/nexflow"
+                    events: ["payment.verified", "payment.failed"]
+                    enabled: true
+                    createdAt: "2026-01-20T00:00:00Z"
+                    updatedAt: "2026-01-20T00:00:00Z"
+                count: 1
+        '401':
+          description: Missing or invalid API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SMFErrorResponse'
+
+  # ===========================================================================
+  # DELETE /api/v1/webhooks/{webhookId}
+  # ===========================================================================
+  /api/v1/webhooks/{webhookId}:
+    delete:
+      operationId: webhook_delete
+      summary: Delete a webhook
+      description: |
+        Delete a webhook configuration. The webhook will stop receiving 
+        events immediately.
+      tags:
+        - Webhooks
+      parameters:
+        - name: webhookId
+          in: path
+          description: Webhook ID to delete
+          required: true
+          schema:
+            type: string
+          example: "wh_1737331200_abc123"
+      responses:
+        '200':
+          description: Webhook deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: "Webhook deleted"
+        '401':
+          description: Missing or invalid API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SMFErrorResponse'
+        '404':
+          description: Webhook not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SMFErrorResponse'
+
+tags:
+  - name: SMF Core
+    description: Core payment routing, verification, and settlement APIs
+  - name: SMF Observability
+    description: Health monitoring and facilitator information APIs
+  - name: Webhooks
+    description: Webhook management for async event notifications

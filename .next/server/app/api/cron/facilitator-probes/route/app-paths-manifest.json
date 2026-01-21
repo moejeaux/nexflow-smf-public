@@ -1,0 +1,3 @@
+{
+  "/api/cron/facilitator-probes/route": "app/api/cron/facilitator-probes/route.js"
+}

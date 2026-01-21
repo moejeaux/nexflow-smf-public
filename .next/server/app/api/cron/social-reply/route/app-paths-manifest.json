@@ -1,0 +1,3 @@
+{
+  "/api/cron/social-reply/route": "app/api/cron/social-reply/route.js"
+}

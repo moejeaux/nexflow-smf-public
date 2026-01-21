@@ -1,0 +1,3 @@
+{
+  "/api/cron/evaluate-anomalies/route": "app/api/cron/evaluate-anomalies/route.js"
+}
