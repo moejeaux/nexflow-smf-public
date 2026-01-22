@@ -26,6 +26,14 @@ jobs:
         with:
           node-version: "20"
 
+      - name: Debug checked-out ref + server.json schema
+        run: |
+          echo "github.ref=${{ github.ref }}"
+          echo "github.sha=${{ github.sha }}"
+          git rev-parse HEAD
+          ls -la
+          node -e "const s=require('./server.json'); console.log('server.json $schema =', s['$schema']);"
+
       - name: Validate server.json (basic)
         run: |
           node -e "
@@ -61,6 +69,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
+
+      - name: Debug checked-out ref + server.json schema
+        run: |
+          echo "github.ref=${{ github.ref }}"
+          echo "github.sha=${{ github.sha }}"
+          git rev-parse HEAD
+          node -e "const s=require('./server.json'); console.log('server.json $schema =', s['$schema']);"
       
       - name: Get version
         id: version
