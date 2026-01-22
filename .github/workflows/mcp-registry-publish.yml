@@ -32,24 +32,37 @@ jobs:
           echo "github.sha=${{ github.sha }}"
           git rev-parse HEAD
           ls -la
-          node -e "const s=require('./server.json'); console.log('server.json $schema =', s['$schema']);"
+          node -e 'const fs=require("fs"); const s=JSON.parse(fs.readFileSync("server.json","utf8")); console.log("server.json $schema =", s["$schema"]);'
 
       - name: Validate server.json (basic)
         run: |
-          node -e "
-            const fs = require('fs');
-            const path = 'server.json';
-            if (!fs.existsSync(path)) throw new Error('server.json not found at repo root');
-            const server = JSON.parse(fs.readFileSync(path, 'utf8'));
-            const required = ['name', 'version', 'transport', 'tools'];
-            for (const k of required) if (!(k in server)) throw new Error('Missing required field: ' + k);
-            if (!server.transport || !server.transport.type) throw new Error('Missing transport.type');
-            if (server.transport.type !== 'stdio' && server.transport.type !== 'http') {
-              throw new Error('Unexpected transport.type: ' + server.transport.type);
+          node -e '
+            const fs = require("fs");
+            const path = "server.json";
+            if (!fs.existsSync(path)) throw new Error("server.json not found at repo root");
+            const server = JSON.parse(fs.readFileSync(path, "utf8"));
+
+            // New schema format (2025-09-29+): packages[] carries transport + env vars
+            if (Array.isArray(server.packages)) {
+              if (!server.name) throw new Error("Missing required field: name");
+              if (!server.version) throw new Error("Missing required field: version");
+              if (server.packages.length === 0) throw new Error("packages must be a non-empty array");
+              for (const [i, pkg] of server.packages.entries()) {
+                if (!pkg.registryType) throw new Error(`packages[${i}].registryType is required`);
+                if (!pkg.identifier) throw new Error(`packages[${i}].identifier is required`);
+                if (!pkg.transport || !pkg.transport.type) throw new Error(`packages[${i}].transport.type is required`);
+              }
+              console.log("server.json basic validation passed (packages schema)");
+              process.exit(0);
             }
-            if (!Array.isArray(server.tools) || server.tools.length === 0) throw new Error('tools must be a non-empty array');
-            console.log('server.json basic validation passed');
-          "
+
+            // Legacy format (older servers): top-level transport + tools
+            const required = ["name", "version", "transport", "tools"];
+            for (const k of required) if (!(k in server)) throw new Error("Missing required field: " + k);
+            if (!server.transport || !server.transport.type) throw new Error("Missing transport.type");
+            if (!Array.isArray(server.tools) || server.tools.length === 0) throw new Error("tools must be a non-empty array");
+            console.log("server.json basic validation passed (legacy schema)");
+          '
 
   publish:
     name: Publish to MCP Registry
@@ -75,7 +88,7 @@ jobs:
           echo "github.ref=${{ github.ref }}"
           echo "github.sha=${{ github.sha }}"
           git rev-parse HEAD
-          node -e "const s=require('./server.json'); console.log('server.json $schema =', s['$schema']);"
+          node -e 'const fs=require("fs"); const s=JSON.parse(fs.readFileSync("server.json","utf8")); console.log("server.json $schema =", s["$schema"]);'
       
       - name: Get version
         id: version
