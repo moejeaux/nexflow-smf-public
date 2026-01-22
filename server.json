@@ -1,7 +1,7 @@
 {
-  "$schema": "https://raw.githubusercontent.com/modelcontextprotocol/registry/main/schema/server.json",
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
   "mcpVersion": "2024-11-05",
-  "name": "nexflow-smf",
+  "name": "io.github.moejeaux/nexflow-smf",        // important: GitHub-style MCP name
   "version": "1.0.0",
   "description": "Smart Meta-Facilitator for x402 payments on Base. Route, verify, settle crypto payments with intelligent facilitator selection.",
   "author": "NexFlow",
@@ -9,8 +9,17 @@
   "homepage": "https://nexflowapp.app",
   "repository": {
     "type": "git",
-    "url": "https://github.com/moejeaux/nexflow.git"
+    "url": "https://github.com/moejeaux/nexflow-smf-public.git"
   },
+
+  "packages": [
+    {
+      "registry_type": "npm",
+      "identifier": "@nexflow/smf",               // or whatever your actual npm package name is
+      "version": "1.0.0"
+    }
+  ],
+
   "transport": {
     "type": "stdio",
     "command": "npm",
@@ -32,38 +41,14 @@
     }
   },
   "tools": [
-    {
-      "name": "smf_health",
-      "description": "Get SMF system health status and facilitator metrics"
-    },
-    {
-      "name": "smf_list_facilitators",
-      "description": "List available payment facilitators with fees and capabilities"
-    },
-    {
-      "name": "smf_route",
-      "description": "Route a payment to the best facilitator, returns quote_id"
-    },
-    {
-      "name": "smf_verify",
-      "description": "Verify an on-chain payment transaction"
-    },
-    {
-      "name": "smf_settle",
-      "description": "Settle a verified payment, trigger payout"
-    },
-    {
-      "name": "smf_create_webhook",
-      "description": "Create webhook for async payment notifications"
-    },
-    {
-      "name": "smf_list_webhooks",
-      "description": "List configured webhooks"
-    },
-    {
-      "name": "smf_delete_webhook",
-      "description": "Delete a webhook configuration"
-    }
+    { "name": "smf_health", "description": "Get SMF system health status and facilitator metrics" },
+    { "name": "smf_list_facilitators", "description": "List available payment facilitators with fees and capabilities" },
+    { "name": "smf_route", "description": "Route a payment to the best facilitator, returns quote_id" },
+    { "name": "smf_verify", "description": "Verify an on-chain payment transaction" },
+    { "name": "smf_settle", "description": "Settle a verified payment, trigger payout" },
+    { "name": "smf_create_webhook", "description": "Create webhook for async payment notifications" },
+    { "name": "smf_list_webhooks", "description": "List configured webhooks" },
+    { "name": "smf_delete_webhook", "description": "Delete a webhook configuration" }
   ],
   "keywords": [
     "payments",
