@@ -1,7 +1,8 @@
 {
   "name": "@nexflow-smf/smf",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "NexFlow Smart Meta-Facilitator SDK for x402 payments - zero dependencies",
+  "mcpName": "io.github.moejeaux/nexflow-smf",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
