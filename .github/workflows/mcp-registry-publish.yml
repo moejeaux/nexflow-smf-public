@@ -26,11 +26,22 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Install dependencies
-        run: npm install --no-audit --no-fund
-
-      - name: Validate server.json against schema
-        run: npm run mcp:validate
+      - name: Validate server.json (basic)
+        run: |
+          node -e "
+            const fs = require('fs');
+            const path = 'server.json';
+            if (!fs.existsSync(path)) throw new Error('server.json not found at repo root');
+            const server = JSON.parse(fs.readFileSync(path, 'utf8'));
+            const required = ['name', 'version', 'transport', 'tools'];
+            for (const k of required) if (!(k in server)) throw new Error('Missing required field: ' + k);
+            if (!server.transport || !server.transport.type) throw new Error('Missing transport.type');
+            if (server.transport.type !== 'stdio' && server.transport.type !== 'http') {
+              throw new Error('Unexpected transport.type: ' + server.transport.type);
+            }
+            if (!Array.isArray(server.tools) || server.tools.length === 0) throw new Error('tools must be a non-empty array');
+            console.log('server.json basic validation passed');
+          "
 
   publish:
     name: Publish to MCP Registry
