@@ -1,0 +1,83 @@
+{
+  "$schema": "https://raw.githubusercontent.com/modelcontextprotocol/registry/main/schema/server.json",
+  "mcpVersion": "2024-11-05",
+  "name": "nexflow-smf",
+  "version": "1.0.0",
+  "description": "Smart Meta-Facilitator for x402 payments on Base. Route, verify, settle crypto payments with intelligent facilitator selection.",
+  "author": "NexFlow",
+  "license": "MIT",
+  "homepage": "https://nexflowapp.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/moejeaux/nexflow.git"
+  },
+  "transport": {
+    "type": "stdio",
+    "command": "npm",
+    "args": ["run", "mcp:smf-stdio"],
+    "env": {
+      "NEXFLOW_API_KEY": {
+        "description": "NexFlow API key (format: nf_live_* or nf_test_*)",
+        "required": true
+      },
+      "NEXFLOW_BASE_URL": {
+        "description": "API base URL (default: https://api.nexflowapp.app)",
+        "required": false
+      }
+    }
+  },
+  "capabilities": {
+    "tools": {
+      "listChanged": false
+    }
+  },
+  "tools": [
+    {
+      "name": "smf_health",
+      "description": "Get SMF system health status and facilitator metrics"
+    },
+    {
+      "name": "smf_list_facilitators",
+      "description": "List available payment facilitators with fees and capabilities"
+    },
+    {
+      "name": "smf_route",
+      "description": "Route a payment to the best facilitator, returns quote_id"
+    },
+    {
+      "name": "smf_verify",
+      "description": "Verify an on-chain payment transaction"
+    },
+    {
+      "name": "smf_settle",
+      "description": "Settle a verified payment, trigger payout"
+    },
+    {
+      "name": "smf_create_webhook",
+      "description": "Create webhook for async payment notifications"
+    },
+    {
+      "name": "smf_list_webhooks",
+      "description": "List configured webhooks"
+    },
+    {
+      "name": "smf_delete_webhook",
+      "description": "Delete a webhook configuration"
+    }
+  ],
+  "keywords": [
+    "payments",
+    "x402",
+    "settlement",
+    "webhooks",
+    "Base",
+    "Ethereum",
+    "crypto",
+    "USDC",
+    "facilitator",
+    "routing",
+    "verification",
+    "fintech",
+    "DeFi"
+  ]
+}
