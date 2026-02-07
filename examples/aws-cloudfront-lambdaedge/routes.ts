@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------
-// Route → Gating Config
+// Lambda@Edge x402 Adapter — Route → Gating Config
 // ---------------------------------------------------------------------------
 //
 // Defines which URL paths require x402 payment verification.
@@ -22,20 +22,13 @@ import type { RouteConfig } from './types.js'
  *   '/single'     → matches only /single exactly
  */
 export const routes: Record<string, RouteConfig> = {
-  // Gate all /api/* paths at $0.001 per request
   '/api/*': {
-    price: '0.001',
-    currency: 'USD',
-    network: 'eip155:8453',
-    resourceId: 'api-basic',
+    network: 'eip155:8453',    // Base mainnet
+    resourceId: 'joke-endpoint',
   },
-
-  // Gate /premium/* paths at $0.01 per request
   '/premium/*': {
-    price: '0.01',
-    currency: 'USD',
     network: 'eip155:8453',
-    resourceId: 'api-premium',
+    resourceId: 'premium-data',
   },
 }
 

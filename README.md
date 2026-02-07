@@ -10,11 +10,11 @@ NexFlow SMF routes, verifies, and settles x402 micropayments on Base. It acts as
 
 ### **Monetize an existing API at the edge** (recommended)
 
-Drop a Lambda@Edge function in front of CloudFront. Every request to a protected path must include a valid `x-402-payment` header — otherwise the client gets a `402 Payment Required` with payment instructions. No backend changes needed.
+Drop a Lambda@Edge function in front of CloudFront. Every request to a protected path must include a valid `x402-payment` header — otherwise the client gets a `402 Payment Required` with payment instructions. No backend changes needed.
 
 **How it works:**
-1. **viewer-request** — Lambda calls `/x402/verify` with the payment proof. If valid, attaches an `intentId` and forwards to origin. If invalid, returns `402`.
-2. **origin-response** — Lambda reads the `intentId`. If origin status < 400, calls `/x402/settle` to confirm delivery. Returns the response unchanged.
+1. **viewer-request** — Lambda calls `/x402/verify` with the payment proof (not billed). If valid, attaches a `settlementIntentId` and forwards to origin. If invalid, returns `402`.
+2. **origin-response** — Lambda reads the `settlementIntentId`. If origin status < 400, calls `/x402/settle` to confirm delivery (this is the billable event). Returns the response unchanged.
 
 **Get started in 15 minutes:**
 
@@ -119,10 +119,10 @@ Get your API key at [nexflowapp.app](https://nexflowapp.app).
 
 | Doc | What's inside |
 |-----|---------------|
-| [Facilitator API](./docs/facilitator-api.md) | `/verify` and `/settle` contracts, `intentId` lifecycle, error handling, retry guidance |
+| [Facilitator API](./docs/facilitator-api.md) | `/verify` and `/settle` contracts, `settlementIntentId` lifecycle, error handling, retry guidance |
 | [API Reference](./docs/api-reference.md) | All endpoints (SMF core, x402 routing, agent discovery), SDK reference, contract ABI |
 | [Production Checklist](./docs/production-checklist.md) | Idempotency, latency, CloudWatch logging, failure modes, key rotation |
-| [Pricing](./PRICING.md) | Pulse metering, facilitator per-call pricing, example scenarios |
+| [Pricing](./PRICING.md) | Pulse metering, facilitator settle-only pricing, example scenarios |
 | [Agent Manifest](./AGENT_MANIFEST_V1.md) | Machine-to-machine capability discovery spec |
 | [SDK README](./sdk/README.md) | Full SDK docs: installation, methods, error handling, utilities |
 

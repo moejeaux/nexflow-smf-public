@@ -8,7 +8,7 @@ Everything you need to harden your x402 Lambda@Edge deployment before going live
 
 ### `/settle` is idempotent
 
-The `/settle` endpoint is safe to call multiple times with the same `intentId`. NexFlow deduplicates server-side — you will never double-settle.
+The `/settle` endpoint is safe to call multiple times with the same `settlementIntentId`. NexFlow deduplicates server-side — you will never double-settle.
 
 This means:
 - If origin-response fires twice (CloudFront retry), both settle calls succeed without side effects
@@ -17,16 +17,16 @@ This means:
 
 ### Upstream idempotency
 
-If your origin has side effects (e.g., provisioning a resource, sending an email), use the `intentId` as your own idempotency key to prevent duplicate processing:
+If your origin has side effects (e.g., provisioning a resource, sending an email), use the `settlementIntentId` as your own idempotency key to prevent duplicate processing:
 
 ```typescript
 // In your origin handler:
-const intentId = request.headers['x-settlement-intent-id']
-if (await alreadyProcessed(intentId)) {
-  return cachedResponse(intentId)
+const settlementIntentId = request.headers['x-settlement-intent-id']
+if (await alreadyProcessed(settlementIntentId)) {
+  return cachedResponse(settlementIntentId)
 }
 // ... process request ...
-await markProcessed(intentId)
+await markProcessed(settlementIntentId)
 ```
 
 ---
@@ -61,7 +61,7 @@ The Lambda handler emits structured JSON logs. Configure your CloudWatch log gro
   "eventType": "verify",
   "path": "/api/joke",
   "resourceId": "api-basic",
-  "intentId": "abc123",
+  "settlementIntentId": "abc123",
   "valid": true,
   "latencyMs": 87,
   "requestId": "cf-abc-123",
@@ -76,7 +76,7 @@ The Lambda handler emits structured JSON logs. Configure your CloudWatch log gro
   "ts": "2026-02-07T08:12:34.890Z",
   "eventType": "settle",
   "path": "/api/joke",
-  "intentId": "abc123",
+  "settlementIntentId": "abc123",
   "settled": true,
   "settledAt": "2026-02-07T08:12:34.850Z",
   "latencyMs": 62,
@@ -91,7 +91,7 @@ The Lambda handler emits structured JSON logs. Configure your CloudWatch log gro
   "ts": "2026-02-07T08:12:35.100Z",
   "eventType": "settle_skipped",
   "path": "/api/premium/report",
-  "intentId": "def456",
+  "settlementIntentId": "def456",
   "reason": "origin returned 503",
   "requestId": "cf-def-456"
 }
@@ -102,7 +102,7 @@ The Lambda handler emits structured JSON logs. Configure your CloudWatch log gro
 | Field | Why |
 |---|---|
 | `requestId` | Correlate across verify/settle for the same request |
-| `intentId` | Track a payment from verify through settlement |
+| `settlementIntentId` | Track a payment from verify through settlement |
 | `path` | Filter by resource |
 | `eventType` | Separate verify, settle, and settle_skipped events |
 | `latencyMs` | Monitor NexFlow round-trip performance |
@@ -155,7 +155,7 @@ NexFlow API keys are injected at **build time** (Lambda@Edge doesn't support run
 
 2. **Rebuild with the new key:**
    ```bash
-   NEXFLOW_API_BASE_URL=https://api.nexflowapp.app/api/v1/facilitator/x402 \
+   NEXFLOW_FACILITATOR_URL=https://api.nexflowapp.app/api/v1/facilitator/x402 \
    NEXFLOW_API_KEY=nf_live_new_key_here \
    npm run build
    ```

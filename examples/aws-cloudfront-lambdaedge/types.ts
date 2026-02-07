@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------
-// Shared Types
+// Lambda@Edge x402 Adapter — Shared Types
 // ---------------------------------------------------------------------------
 
 // ---------------------------------------------------------------------------
@@ -8,51 +8,54 @@
 
 /** Gating config for a protected path pattern. */
 export interface RouteConfig {
-  /** Price per request (e.g. "0.001"). */
-  price: string
-  /** Currency code (e.g. "USD"). */
-  currency: string
   /** CAIP-2 network identifier (e.g. "eip155:8453" for Base mainnet). */
   network: string
-  /** Stable identifier for this resource tier. */
+  /** Stable identifier for this resource (e.g. "joke-endpoint"). */
   resourceId: string
 }
 
 // ---------------------------------------------------------------------------
-// NexFlow Facilitator API — /verify
+// NexFlow Facilitator API — POST /verify
 // ---------------------------------------------------------------------------
 
-/** Request body sent to POST /verify. */
+/** Request body sent to POST {FACILITATOR_URL}/verify. */
 export interface VerifyRequest {
-  path: string
-  price: string
-  currency: string
   network: string
   resourceId: string
   headers: Record<string, string>
 }
 
-/** Response from POST /verify. */
+/**
+ * Response from POST {FACILITATOR_URL}/verify.
+ *
+ * On success: { valid: true, settlementIntentId: "x402-intent-...", reason: null }
+ * On failure: { valid: false, reason: "...", requirement: { ... } }
+ */
 export interface VerifyResponse {
   valid: boolean
-  intentId?: string
+  settlementIntentId?: string
   expiresAt?: string
-  reason?: string
+  reason?: string | null
   requirement?: unknown | null
 }
 
 // ---------------------------------------------------------------------------
-// NexFlow Facilitator API — /settle
+// NexFlow Facilitator API — POST /settle
 // ---------------------------------------------------------------------------
 
-/** Request body sent to POST /settle. */
+/**
+ * Request body sent to POST {FACILITATOR_URL}/settle.
+ *
+ * This is the billable event — called only when the origin returns success (<400).
+ */
 export interface SettleRequest {
-  intentId: string
-  status: 'success' | 'failure'
-  statusCode: number
+  network: string
+  settlementIntentId: string
+  resourceId: string
+  originStatus: number
 }
 
-/** Response from POST /settle. */
+/** Response from POST {FACILITATOR_URL}/settle. */
 export interface SettleResponse {
   ok: boolean
   settledAt?: string
@@ -68,7 +71,7 @@ export interface LogEntry {
   eventType: string
   path?: string
   resourceId?: string
-  intentId?: string
+  settlementIntentId?: string
   valid?: boolean
   settled?: boolean
   settledAt?: string
@@ -77,6 +80,7 @@ export interface LogEntry {
   requestId?: string
   error?: string
   hasPaymentHeader?: boolean
+  originStatus?: number
 }
 
 // ---------------------------------------------------------------------------

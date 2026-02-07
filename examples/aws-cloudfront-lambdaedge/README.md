@@ -2,7 +2,11 @@
 
 **15-minute quickstart: gate any CloudFront path behind x402 micropayments using Lambda@Edge.**
 
-No backend changes. No auth server. No subscription tiers. Just a Lambda function that verifies payment on the way in and settles on the way out.
+No backend changes. No auth server. No billing tiers. Just a Lambda function that verifies payment on the way in and settles on the way out.
+
+> **Billing:** You only pay when your paywalled endpoint is successfully served.
+> Billing unit: successful settlement (`POST /x402/settle`). Verify is **not** billed.
+> No subscriptions. No pre-funded balance. Pay-per-use only.
 
 ---
 
@@ -20,14 +24,14 @@ No backend changes. No auth server. No subscription tiers. Just a Lambda functio
 
 ```
 Client
-  │  x-402-payment header
+  │  x402-payment header
   ▼
 CloudFront (viewer-request)
   │
   ▼
-Lambda@Edge ──► NexFlow /verify
+Lambda@Edge ──► NexFlow /verify (not billed)
   │                  │
-  │            valid? attach intentId
+  │            valid? attach settlementIntentId
   │                  │
   ▼                  ▼
 Origin (your API)    402 if invalid
@@ -36,7 +40,7 @@ Origin (your API)    402 if invalid
 CloudFront (origin-response)
   │
   ▼
-Lambda@Edge ──► NexFlow /settle
+Lambda@Edge ──► NexFlow /settle (billable event)
   │              (if status < 400)
   ▼
 Response to Client
@@ -44,8 +48,8 @@ Response to Client
 
 | Trigger | What happens |
 |---|---|
-| **viewer-request** | Verify payment — call `/verify` with the `x-402-payment` header. If valid, attach `intentId` and forward. If invalid, return `402`. |
-| **origin-response** | Settle payment — read `intentId` from headers. If origin status < 400, call `/settle` to confirm delivery. Return origin response unchanged. |
+| **viewer-request** | Verify payment (not billed) — Lambda forwards request headers to NexFlow `/x402/verify`. If valid, attaches the returned `settlementIntentId` and forwards to origin. If invalid or missing, returns `402 Payment Required`. |
+| **origin-response** | Settle payment (billable event) — Lambda reads the `settlementIntentId` from headers. If the origin responded with status < 400, calls `/x402/settle` to confirm delivery. Returns the origin response unchanged. |
 
 ---
 
@@ -55,7 +59,7 @@ Response to Client
 aws-cloudfront-lambdaedge/
 ├── handler.ts              # Lambda@Edge entry point (viewer-request + origin-response)
 ├── nexflowFacilitator.ts   # NexFlow Facilitator client (/verify + /settle)
-├── routes.ts               # Route table — which paths are gated and at what price
+├── routes.ts               # Route table — which paths are gated
 ├── types.ts                # Shared TypeScript interfaces
 ├── esbuild.config.mjs      # Bundler config (→ dist/handler.js)
 ├── tsconfig.json
@@ -84,16 +88,12 @@ Open `routes.ts` and map the paths you want to gate:
 ```typescript
 export const routes: Record<string, RouteConfig> = {
   '/api/*': {
-    price: '0.001',          // $0.001 per request
-    currency: 'USD',
-    network: 'eip155:8453',  // Base mainnet
-    resourceId: 'api-basic',
+    network: 'eip155:8453',    // Base mainnet
+    resourceId: 'joke-endpoint',
   },
   '/premium/*': {
-    price: '0.01',           // $0.01 per request
-    currency: 'USD',
     network: 'eip155:8453',
-    resourceId: 'api-premium',
+    resourceId: 'premium-data',
   },
 }
 ```
@@ -238,7 +238,7 @@ content-type: application/json
 
 ```bash
 curl -i https://your-distribution.cloudfront.net/api/joke \
-  -H "x-402-payment: <base64-payment-proof>"
+  -H "x402-payment: <base64-payment-proof>"
 ```
 
 ```
@@ -280,8 +280,8 @@ aws lambda delete-function \
 
 | Symptom | Fix |
 |---|---|
-| `500` on every request | Check that `NEXFLOW_API_KEY` is correct and the Lambda can reach the NexFlow API. |
-| `402` even with payment | Verify the `x-402-payment` header is present and correctly formatted. Check CloudWatch logs. |
+| `500` on every request | Check that `NEXFLOW_FACILITATOR_URL` and `NEXFLOW_API_KEY` are correct and the Lambda can reach the NexFlow API. |
+| `402` even with payment | Verify the `x402-payment` header is present and correctly formatted. Check CloudWatch logs. |
 | Lambda not triggering | Confirm both `viewer-request` and `origin-response` associations are attached and you published a numbered version. |
 | Settle not logging | Confirm the `origin-response` trigger is attached. Check CloudWatch for `settle_skipped` events. |
 
@@ -291,5 +291,5 @@ aws lambda delete-function \
 
 - [Facilitator API Reference](../../docs/facilitator-api.md) — Full `/verify` and `/settle` contract
 - [Production Checklist](../../docs/production-checklist.md) — Idempotency, logging, failure modes, key rotation
-- [Pricing](../../PRICING.md) — Costs at 100k and 1M requests/month
+- [Pricing](../../PRICING.md) — Settle-only pricing with example scenarios
 - [NexFlow Dashboard](https://nexflowapp.app) — Get your API key and monitor usage

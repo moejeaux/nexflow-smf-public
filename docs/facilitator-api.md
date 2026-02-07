@@ -2,6 +2,8 @@
 
 The NexFlow facilitator handles payment verification and settlement for x402-gated resources. It exposes two endpoints — **verify** and **settle** — that form a two-phase flow: verify the payment proof before serving content, then confirm delivery after the origin responds.
 
+**Billing:** Settle is the billable event. Verify is **not** billed — it only gates access.
+
 ---
 
 ## Base URL
@@ -26,19 +28,18 @@ Get your API key at [nexflowapp.app](https://nexflowapp.app).
 
 Validate a client's x402 payment proof. Called during the **viewer-request** phase (before the origin processes the request).
 
-If the proof is valid, returns an `intentId` that tracks this payment through settlement.
+**Verify is not billed** — it only gates access.
+
+If the proof is valid, returns a `settlementIntentId` that tracks this payment through settlement.
 
 ### Request
 
 ```json
 {
-  "path": "/api/joke",
-  "price": "0.001",
-  "currency": "USD",
   "network": "eip155:8453",
   "resourceId": "joke-endpoint",
   "headers": {
-    "x-402-payment": "<base64-encoded-payment-proof>",
+    "x402-payment": "<base64-encoded-payment-proof>",
     "user-agent": "curl/8.0.0"
   }
 }
@@ -46,19 +47,16 @@ If the proof is valid, returns an `intentId` that tracks this payment through se
 
 | Field | Type | Description |
 |---|---|---|
-| `path` | `string` | The requested resource path |
-| `price` | `string` | Price per request (e.g. `"0.001"`) |
-| `currency` | `string` | Currency code (`"USD"`) |
 | `network` | `string` | CAIP-2 network identifier (`"eip155:8453"` for Base mainnet) |
 | `resourceId` | `string` | Stable identifier for this resource/tier |
-| `headers` | `object` | Forwarded request headers — must include `x-402-payment` with the client's payment proof |
+| `headers` | `object` | Forwarded request headers (lowercased keys) — must include `x402-payment` with the client's payment proof |
 
 ### Response (valid payment)
 
 ```json
 {
   "valid": true,
-  "intentId": "x402-intent-abc123",
+  "settlementIntentId": "x402-intent-abc123",
   "expiresAt": "2026-02-07T07:48:00Z",
   "reason": null
 }
@@ -67,7 +65,7 @@ If the proof is valid, returns an `intentId` that tracks this payment through se
 | Field | Type | Description |
 |---|---|---|
 | `valid` | `boolean` | Whether the payment proof is valid |
-| `intentId` | `string` | Settlement tracking identifier — pass this to `/settle` |
+| `settlementIntentId` | `string` | Settlement tracking identifier — pass this to `/settle` |
 | `expiresAt` | `string` | ISO 8601 expiry for the intent |
 | `reason` | `string\|null` | `null` when valid; error reason when invalid |
 
@@ -94,7 +92,7 @@ If the proof is valid, returns an `intentId` that tracks this payment through se
 |---|---|---|
 | `valid` | `boolean` | `false` |
 | `reason` | `string` | Why verification failed (e.g. `missing_payment_header`, `invalid_signature`, `expired`, `insufficient_amount`) |
-| `requirement` | `object\|null` | Payment instructions for the client to construct a valid `x-402-payment` header |
+| `requirement` | `object\|null` | Payment instructions for the client to construct a valid `x402-payment` header. The `asset` field is `USDC`. |
 
 ---
 
@@ -102,23 +100,27 @@ If the proof is valid, returns an `intentId` that tracks this payment through se
 
 Confirm that the origin successfully delivered the requested resource. Called during the **origin-response** phase, only when the origin returns a status code < 400.
 
-The `intentId` from `/verify` is the stable identifier linking verify and settle.
+**This is the billable event.** Settle is called only on origin success. If the origin fails, no settle is made and there is no charge.
+
+The `settlementIntentId` from `/verify` links verify and settle.
 
 ### Request
 
 ```json
 {
-  "intentId": "x402-intent-abc123",
-  "status": "success",
-  "statusCode": 200
+  "network": "eip155:8453",
+  "settlementIntentId": "x402-intent-abc123",
+  "resourceId": "joke-endpoint",
+  "originStatus": 200
 }
 ```
 
 | Field | Type | Description |
 |---|---|---|
-| `intentId` | `string` | The `intentId` returned by `/verify` |
-| `status` | `string` | Delivery status — `"success"` or `"failure"` |
-| `statusCode` | `number` | HTTP status code from origin |
+| `network` | `string` | CAIP-2 network identifier (`"eip155:8453"`) |
+| `settlementIntentId` | `string` | The `settlementIntentId` returned by `/verify` |
+| `resourceId` | `string` | The resource that was served |
+| `originStatus` | `number` | HTTP status code from origin (must be < 400) |
 
 ### Response
 
@@ -136,13 +138,13 @@ The `intentId` from `/verify` is the stable identifier linking verify and settle
 
 ---
 
-## The `intentId`
+## The `settlementIntentId`
 
-The `intentId` is the stable settlement identifier that links a verified payment to its delivery confirmation. In a Lambda@Edge deployment, the typical flow is:
+The `settlementIntentId` is the stable identifier that links a verified payment to its delivery confirmation. In a Lambda@Edge deployment, the typical flow is:
 
-1. **viewer-request** calls `/verify` → receives `intentId`
-2. Lambda attaches `intentId` as the `x-settlement-intent-id` header on the request forwarded to origin
-3. **origin-response** reads `intentId` from the header and calls `/settle` if the origin returned a successful response
+1. **viewer-request** calls `/verify` → receives `settlementIntentId`
+2. Lambda attaches `settlementIntentId` as the `x-settlement-intent-id` header on the request forwarded to origin
+3. **origin-response** reads `settlementIntentId` from the header and calls `/settle` if the origin returned a successful response
 
 This two-phase design ensures you never settle for a failed delivery.
 
@@ -150,13 +152,13 @@ This two-phase design ensures you never settle for a failed delivery.
 
 ## Idempotency
 
-`/settle` is **idempotent**. Calling it multiple times with the same `intentId` returns the same result without double-settling. This means:
+`/settle` is **idempotent**. Calling it multiple times with the same `settlementIntentId` returns the same result without double-settling. This means:
 
 - Safe to retry on network timeouts
 - Safe if CloudFront triggers origin-response more than once
 - No need for external deduplication logic
 
-`/verify` is also safe to call multiple times for the same payment proof — it will return the same `intentId`.
+`/verify` is also safe to call multiple times for the same payment proof — it will return the same `settlementIntentId`.
 
 ---
 
@@ -168,7 +170,7 @@ This two-phase design ensures you never settle for a failed delivery.
 | Malformed request body | `400` | `{ "error": "invalid_request", "message": "..." }` |
 | Payment proof expired | `200` | `{ "valid": false, "reason": "expired" }` |
 | Network timeout calling NexFlow | n/a | Caller should treat as verification failure |
-| `/settle` with unknown `intentId` | `404` | `{ "ok": false, "error": "intent_not_found" }` |
+| `/settle` with unknown `settlementIntentId` | `404` | `{ "ok": false, "error": "intent_not_found" }` |
 | Internal error | `500` | `{ "error": "internal_error" }` |
 
 ### Retry Guidance

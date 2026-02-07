@@ -1,18 +1,17 @@
 // ---------------------------------------------------------------------------
-// NexFlow Facilitator API Client
+// Lambda@Edge x402 Adapter — NexFlow Facilitator API Client
 // ---------------------------------------------------------------------------
 //
-// Thin wrapper around the NexFlow x402 facilitator endpoints:
+// Two endpoints (relative to FACILITATOR_URL):
+//   POST {FACILITATOR_URL}/verify   — validate payment proof (not billed)
+//   POST {FACILITATOR_URL}/settle   — confirm delivery (this is the billable event)
 //
-//   POST {BASE_URL}/verify   — validate payment proof, get intentId
-//   POST {BASE_URL}/settle   — confirm delivery after origin responds
+// FACILITATOR_URL = https://api.nexflowapp.app/api/v1/facilitator/x402
 //
 // Auth: X-Facilitator-Auth header.
 //
 // Config values are injected at **build time** via esbuild `define`
 // (Lambda@Edge does not support runtime environment variables).
-//
-// Base URL: https://api.nexflowapp.app/api/v1/facilitator/x402
 // ---------------------------------------------------------------------------
 
 import type {
@@ -23,7 +22,7 @@ import type {
 } from './types.js'
 
 // Build-time injected (see esbuild.config.mjs)
-const BASE_URL: string = process.env.NEXFLOW_FACILITATOR_URL!
+const FACILITATOR_URL: string = process.env.NEXFLOW_FACILITATOR_URL!
 const API_KEY: string = process.env.NEXFLOW_API_KEY!
 
 /** Default timeout for outbound API calls (ms). */
@@ -42,7 +41,7 @@ async function facilitatorFetch<T>(
   const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS)
 
   try {
-    const res = await fetch(`${BASE_URL}${path}`, {
+    const res = await fetch(`${FACILITATOR_URL}${path}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -68,28 +67,37 @@ async function facilitatorFetch<T>(
 }
 
 // ---------------------------------------------------------------------------
-// verify — called on viewer-request
+// verify — called on viewer-request (NOT billed)
 // ---------------------------------------------------------------------------
 
 /**
- * Call NexFlow /verify to validate the payment proof.
+ * Call POST {FACILITATOR_URL}/verify to validate the payment proof.
  *
- * If the proof is valid, returns `{ valid: true, intentId: "..." }`.
- * The intentId is attached to the request and used later for settlement.
+ * Verify is NOT a billable event — it only gates access.
+ *
+ * On success returns { valid: true, settlementIntentId: "x402-intent-..." }.
+ * The settlementIntentId is attached to the request for later settlement.
+ *
+ * @returns Parsed verify response.
+ * @throws  On network error or non-JSON response.
  */
 export async function verify(req: VerifyRequest): Promise<VerifyResponse> {
   return facilitatorFetch<VerifyResponse>('/verify', req, 'verify')
 }
 
 // ---------------------------------------------------------------------------
-// settle — called on origin-response
+// settle — called on origin-response (THIS IS THE BILLABLE EVENT)
 // ---------------------------------------------------------------------------
 
 /**
- * Call NexFlow /settle to confirm that the origin delivered
+ * Call POST {FACILITATOR_URL}/settle to confirm that the origin delivered
  * a successful response for this payment intent.
  *
- * Only called when origin status < 400. Idempotent — safe to retry.
+ * This is the billable event. Only called when origin status < 400.
+ * Idempotent — safe to retry without double-billing.
+ *
+ * @returns Parsed settle response.
+ * @throws  On network error or non-JSON response.
  */
 export async function settle(req: SettleRequest): Promise<SettleResponse> {
   return facilitatorFetch<SettleResponse>('/settle', req, 'settle')
