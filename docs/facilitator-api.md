@@ -35,10 +35,11 @@ If the proof is valid, returns an `intentId` that tracks this payment through se
   "path": "/api/joke",
   "price": "0.001",
   "currency": "USD",
-  "network": "base",
-  "resourceId": "example",
+  "network": "eip155:8453",
+  "resourceId": "joke-endpoint",
   "headers": {
-    "x-402-payment": "<base64-encoded-payment-proof>"
+    "x-402-payment": "<base64-encoded-payment-proof>",
+    "user-agent": "curl/8.0.0"
   }
 }
 ```
@@ -48,17 +49,18 @@ If the proof is valid, returns an `intentId` that tracks this payment through se
 | `path` | `string` | The requested resource path |
 | `price` | `string` | Price per request (e.g. `"0.001"`) |
 | `currency` | `string` | Currency code (`"USD"`) |
-| `network` | `string` | Settlement network (`"base"`) |
+| `network` | `string` | CAIP-2 network identifier (`"eip155:8453"` for Base mainnet) |
 | `resourceId` | `string` | Stable identifier for this resource/tier |
-| `headers` | `object` | Must include `x-402-payment` with the client's payment proof |
+| `headers` | `object` | Forwarded request headers — must include `x-402-payment` with the client's payment proof |
 
 ### Response (valid payment)
 
 ```json
 {
   "valid": true,
-  "intentId": "abc123",
-  "expiresAt": "2026-02-07T07:48:00Z"
+  "intentId": "x402-intent-abc123",
+  "expiresAt": "2026-02-07T07:48:00Z",
+  "reason": null
 }
 ```
 
@@ -67,6 +69,7 @@ If the proof is valid, returns an `intentId` that tracks this payment through se
 | `valid` | `boolean` | Whether the payment proof is valid |
 | `intentId` | `string` | Settlement tracking identifier — pass this to `/settle` |
 | `expiresAt` | `string` | ISO 8601 expiry for the intent |
+| `reason` | `string\|null` | `null` when valid; error reason when invalid |
 
 ### Response (invalid / missing payment)
 
@@ -105,7 +108,7 @@ The `intentId` from `/verify` is the stable identifier linking verify and settle
 
 ```json
 {
-  "intentId": "abc123",
+  "intentId": "x402-intent-abc123",
   "status": "success",
   "statusCode": 200
 }
@@ -138,7 +141,7 @@ The `intentId` from `/verify` is the stable identifier linking verify and settle
 The `intentId` is the stable settlement identifier that links a verified payment to its delivery confirmation. In a Lambda@Edge deployment, the typical flow is:
 
 1. **viewer-request** calls `/verify` → receives `intentId`
-2. Lambda attaches `intentId` as a custom header (e.g. `x-settlement-intent-id`) on the request forwarded to origin
+2. Lambda attaches `intentId` as the `x-settlement-intent-id` header on the request forwarded to origin
 3. **origin-response** reads `intentId` from the header and calls `/settle` if the origin returned a successful response
 
 This two-phase design ensures you never settle for a failed delivery.

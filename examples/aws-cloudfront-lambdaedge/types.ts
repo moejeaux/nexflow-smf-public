@@ -12,7 +12,7 @@ export interface RouteConfig {
   price: string
   /** Currency code (e.g. "USD"). */
   currency: string
-  /** Network name (e.g. "base"). */
+  /** CAIP-2 network identifier (e.g. "eip155:8453" for Base mainnet). */
   network: string
   /** Stable identifier for this resource tier. */
   resourceId: string
@@ -29,7 +29,7 @@ export interface VerifyRequest {
   currency: string
   network: string
   resourceId: string
-  headers: { 'x-402-payment': string }
+  headers: Record<string, string>
 }
 
 /** Response from POST /verify. */

@@ -86,13 +86,13 @@ export const routes: Record<string, RouteConfig> = {
   '/api/*': {
     price: '0.001',          // $0.001 per request
     currency: 'USD',
-    network: 'base',
+    network: 'eip155:8453',  // Base mainnet
     resourceId: 'api-basic',
   },
   '/premium/*': {
     price: '0.01',           // $0.01 per request
     currency: 'USD',
-    network: 'base',
+    network: 'eip155:8453',
     resourceId: 'api-premium',
   },
 }

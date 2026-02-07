@@ -26,7 +26,7 @@ export const routes: Record<string, RouteConfig> = {
   '/api/*': {
     price: '0.001',
     currency: 'USD',
-    network: 'base',
+    network: 'eip155:8453',
     resourceId: 'api-basic',
   },
 
@@ -34,7 +34,7 @@ export const routes: Record<string, RouteConfig> = {
   '/premium/*': {
     price: '0.01',
     currency: 'USD',
-    network: 'base',
+    network: 'eip155:8453',
     resourceId: 'api-premium',
   },
 }

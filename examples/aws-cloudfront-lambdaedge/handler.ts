@@ -134,7 +134,7 @@ async function handleViewerRequest(
       currency: route.currency,
       network: route.network,
       resourceId: route.resourceId,
-      headers: { 'x-402-payment': flatHeaders['x-402-payment'] ?? '' },
+      headers: flatHeaders,
     })
 
     const latencyMs = Date.now() - start
