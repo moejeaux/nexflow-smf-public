@@ -1,0 +1,26 @@
+{
+  "name": "nexflow-x402-lambda-edge-example",
+  "version": "1.0.0",
+  "description": "15-minute AWS quickstart: monetize an API with x402 via CloudFront + Lambda@Edge",
+  "private": true,
+  "type": "module",
+  "main": "dist/handler.js",
+  "scripts": {
+    "build": "node esbuild.config.mjs",
+    "typecheck": "tsc --noEmit",
+    "package": "node scripts/package.mjs",
+    "package:skip-build": "node scripts/package.mjs --skip-build",
+    "clean": "node -e \"import('fs').then(fs=>{['dist','lambda-edge.zip'].forEach(p=>{try{fs.rmSync(p,{recursive:true})}catch{}})})\""
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "author": "NexFlow",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.145",
+    "@types/node": "^20.0.0",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.0.0"
+  }
+}
