@@ -6,7 +6,7 @@
  * 
  * Prerequisites:
  * - NEXFLOW_API_KEY environment variable set
- * - Node.js 18+
+ * - Node.js 20+
  * 
  * Run:
  *   export NEXFLOW_API_KEY=nf_live_your_key_here
@@ -41,7 +41,7 @@ async function main() {
   const apiKey = process.env.NEXFLOW_API_KEY;
   if (!apiKey) {
     console.error('❌ NEXFLOW_API_KEY environment variable is required');
-    console.error('   Get your API key at https://nexflowapp.app');
+    console.error('   Sign up or log in at https://nexflowapp.app, go to Developers → API Keys, and click Create API key.');
     process.exit(1);
   }
 

@@ -47,6 +47,10 @@ console.log(`Confidence: ${route.confidence}`);
 console.log(`Quote expires: ${route.quote_expires_at}`);
 ```
 
+## Getting an API Key
+
+Sign up or log in at [nexflowapp.app](https://nexflowapp.app), go to **Developers → API Keys**, and click **Create API key**. Use `nf_test_*` for development and `nf_live_*` for production.
+
 ## API Reference
 
 ### `new NexFlowSMFClient(options)`
@@ -334,7 +338,7 @@ import type {
 
 ## Requirements
 
-- Node.js 18+ (uses native `fetch`)
+- Node.js 20+ (uses native `fetch`)
 - Or any environment with `fetch` support (browsers, Deno, Bun, etc.)
 
 ## License

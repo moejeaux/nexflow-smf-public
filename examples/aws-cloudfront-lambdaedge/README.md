@@ -14,9 +14,9 @@ No backend changes. No auth server. No billing tiers. Just a Lambda function tha
 
 - **AWS account** with permissions to create Lambda functions and modify CloudFront distributions
 - **CloudFront distribution** (existing or new) pointed at your API origin
-- **Node.js >= 18**
+- **Node.js >= 20**
 - **AWS CLI v2** configured (`aws configure`)
-- **NexFlow API key** — get one at [nexflowapp.app](https://nexflowapp.app)
+- **NexFlow API key** — sign up or log in at [nexflowapp.app](https://nexflowapp.app), go to **Developers → API Keys**, and click **Create API key**
 
 ---
 
@@ -111,7 +111,7 @@ The build bakes two values into the bundle (Lambda@Edge doesn't support runtime 
 | Variable | Value |
 |---|---|
 | `NEXFLOW_FACILITATOR_URL` | `https://api.nexflowapp.app/api/v1/facilitator/x402` |
-| `NEXFLOW_API_KEY` | Your key from [nexflowapp.app](https://nexflowapp.app) |
+| `NEXFLOW_API_KEY` | Your key from Developers → API Keys at [nexflowapp.app](https://nexflowapp.app) |
 
 ---
 
@@ -148,7 +148,7 @@ This creates `lambda-edge.zip` (~30KB) ready for deployment.
 aws lambda create-function \
   --region us-east-1 \
   --function-name nexflow-x402-edge \
-  --runtime nodejs18.x \
+  --runtime nodejs20.x \
   --role arn:aws:iam::YOUR_ACCOUNT_ID:role/lambda-edge-role \
   --handler handler.handler \
   --zip-file fileb://lambda-edge.zip \
@@ -292,4 +292,4 @@ aws lambda delete-function \
 - [Facilitator API Reference](../../docs/facilitator-api.md) — Full `/verify` and `/settle` contract
 - [Production Checklist](../../docs/production-checklist.md) — Idempotency, logging, failure modes, key rotation
 - [Pricing](../../PRICING.md) — Settle-only pricing with example scenarios
-- [NexFlow Dashboard](https://nexflowapp.app) — Get your API key and monitor usage
+- [NexFlow](https://nexflowapp.app) — Developers → API Keys to create keys; monitor usage in dashboard

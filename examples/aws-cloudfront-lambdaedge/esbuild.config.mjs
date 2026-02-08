@@ -41,7 +41,7 @@ await build({
   entryPoints: ['handler.ts'],
   bundle: true,
   platform: 'node',
-  target: 'node18',
+  target: 'node20',
   format: 'cjs',
   outfile: 'dist/handler.js',
   sourcemap: true,

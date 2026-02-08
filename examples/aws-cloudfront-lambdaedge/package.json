@@ -13,7 +13,7 @@
     "clean": "node -e \"import('fs').then(fs=>{['dist','lambda-edge.zip'].forEach(p=>{try{fs.rmSync(p,{recursive:true})}catch{}})})\""
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20.0.0"
   },
   "author": "NexFlow",
   "license": "MIT",
