@@ -103,8 +103,9 @@ We'll announce any changes well in advance.
 
 ## Getting Started
 
-1. Sign up at [nexflowapp.app](https://nexflowapp.app)
-2. Get your API key (starts with `nf_live_` or `nf_test_`)
-3. The free tier activates immediately — no credit card required
+1. Sign up or log in at [nexflowapp.app](https://nexflowapp.app)
+2. Go to **Developers → API Keys** and click **Create API key**
+3. Use your key (`nf_test_*` for development, `nf_live_*` for production) with the examples in this repo
+4. The free tier activates immediately — no credit card required
 
 Questions? Open an issue or reach out at [nexflowapp.app](https://nexflowapp.app).

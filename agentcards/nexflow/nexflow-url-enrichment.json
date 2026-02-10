@@ -1,0 +1,59 @@
+{
+  "name": "NexFlow URL Enrichment API",
+  "url": "https://api.nexflowapp.app/api/v1/enrich",
+  "description": "x402-gated URL enrichment service. Generate AgentCards with payment metadata from any URL. Extracts x402 capabilities, payment requirements, and service metadata.",
+  "version": "1.0",
+  "provider": "nexflow",
+  "service_type": "enrichment",
+  
+  "capabilities": {
+    "x402": true,
+    "streaming": false,
+    "batch": false,
+    "async": false
+  },
+  
+  "payment_details": {
+    "payment_protocol": "x402",
+    "payment_url": "https://caas.nexflowapp.app/api/v1/facilitator/x402/verify",
+    "asset": "USDC",
+    "network": "base-mainnet",
+    "amount": "0.005",
+    "scheme": "exact",
+    "facilitator": "nexflow"
+  },
+  
+  "tags": [
+    "enrichment",
+    "agentcards",
+    "x402",
+    "metadata",
+    "discovery",
+    "ai-agents"
+  ],
+  
+  "contact": {
+    "email": "support@nexflowapp.app",
+    "website": "https://nexflowapp.app",
+    "docs": "https://docs.nexflowapp.app/enrichment"
+  },
+  
+  "rate_limits": {
+    "requests_per_minute": 60,
+    "requests_per_day": 1000
+  },
+  
+  "x_nexflow": {
+    "version": "1.0",
+    "payment": {
+      "protocol": "x402",
+      "url": "https://caas.nexflowapp.app/api/v1/facilitator/x402/verify",
+      "asset": "USDC",
+      "network": "base-mainnet",
+      "facilitator": "nexflow"
+    },
+    "operator": {
+      "dashboardUrl": "https://nexflowapp.app"
+    }
+  }
+}

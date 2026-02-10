@@ -1,0 +1,60 @@
+{
+  "name": "NexFlow Pulse - Cloud Scheduler",
+  "url": "https://api.nexflowapp.app/v1/pulse",
+  "description": "Cron-as-a-Service API for AI agents. Schedule recurring tasks, webhooks, and compute jobs with x402 micropayments. Reliable at-least-once execution with retries and monitoring.",
+  "version": "1.0",
+  "provider": "nexflow",
+  "service_type": "scheduling",
+  
+  "capabilities": {
+    "x402": true,
+    "streaming": false,
+    "batch": true,
+    "async": true
+  },
+  
+  "payment_details": {
+    "payment_protocol": "x402",
+    "payment_url": "https://caas.nexflowapp.app/api/v1/facilitator/x402/verify",
+    "asset": "USDC",
+    "network": "base-mainnet",
+    "amount": "0.0015",
+    "scheme": "exact",
+    "facilitator": "nexflow"
+  },
+  
+  "tags": [
+    "pulse",
+    "scheduler",
+    "cron",
+    "ai-agents",
+    "x402",
+    "automation",
+    "compute"
+  ],
+  
+  "contact": {
+    "email": "support@nexflowapp.app",
+    "website": "https://nexflowapp.app",
+    "docs": "https://docs.nexflowapp.app/pulse"
+  },
+  
+  "rate_limits": {
+    "jobs_per_owner": 1000,
+    "executions_per_day": 100000
+  },
+  
+  "x_nexflow": {
+    "version": "1.0",
+    "payment": {
+      "protocol": "x402",
+      "url": "https://caas.nexflowapp.app/api/v1/facilitator/x402/verify",
+      "asset": "USDC",
+      "network": "base-mainnet",
+      "facilitator": "nexflow"
+    },
+    "operator": {
+      "dashboardUrl": "https://nexflowapp.app"
+    }
+  }
+}

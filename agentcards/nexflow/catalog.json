@@ -1,0 +1,46 @@
+{
+  "name": "NexFlow Services Catalog",
+  "description": "Complete catalog of NexFlow service endpoints with x402 payment routing",
+  "version": "1.0",
+  "provider": "nexflow",
+  "generatedAt": "2026-02-10T00:00:00.000Z",
+  "website": "https://nexflowapp.app",
+  "documentation": "https://docs.nexflowapp.app",
+  
+  "services": [
+    {
+      "name": "NexFlow Pulse - Cloud Scheduler",
+      "url": "https://api.nexflowapp.app/v1/pulse",
+      "category": "scheduling",
+      "pricing": "$0.0015 USDC per execution",
+      "card": "https://raw.githubusercontent.com/moejeaux/nexflow-smf-public/main/agentcards/nexflow/nexflow-pulse-scheduler.json"
+    },
+    {
+      "name": "NexFlow URL Enrichment API",
+      "url": "https://api.nexflowapp.app/api/v1/enrich",
+      "category": "enrichment",
+      "pricing": "$0.005 USDC per request",
+      "card": "https://raw.githubusercontent.com/moejeaux/nexflow-smf-public/main/agentcards/nexflow/nexflow-url-enrichment.json"
+    },
+    {
+      "name": "NexFlow ACP Facilitator",
+      "url": "https://api.nexflowapp.app/acp/facilitator/status",
+      "category": "payments",
+      "pricing": "Variable by job",
+      "card": "https://raw.githubusercontent.com/moejeaux/nexflow-smf-public/main/agentcards/nexflow/nexflow-acp-facilitator.json"
+    }
+  ],
+  
+  "payment": {
+    "protocol": "x402",
+    "facilitator_url": "https://caas.nexflowapp.app/api/v1/facilitator/x402/verify",
+    "supported_assets": ["USDC"],
+    "supported_networks": ["base-mainnet"]
+  },
+  
+  "discovery": {
+    "x402_index": "https://x402index.com/",
+    "coinbase_bazaar": "https://www.coinbase.com/bazaar",
+    "nexflow_dashboard": "https://nexflowapp.app/cards"
+  }
+}

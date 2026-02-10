@@ -1,0 +1,44 @@
+{
+  "name": "Your Service Name",
+  "url": "https://api.yourservice.com/v1/endpoint",
+  "description": "Clear, concise description of what your service does. Be specific about capabilities and use cases.",
+  "version": "1.0",
+  "provider": "your-company-or-username",
+  
+  "capabilities": {
+    "x402": true,
+    "streaming": false,
+    "batch": false,
+    "async": false
+  },
+  
+  "payment_details": {
+    "payment_protocol": "x402",
+    "payment_url": "https://your-nexflow-facilitator.com/api/v1/facilitator/x402/verify",
+    "asset": "USDC",
+    "network": "base-mainnet",
+    "amount": "0.01",
+    "scheme": "exact"
+  },
+  
+  "tags": [
+    "ai",
+    "your-category",
+    "specific-technology"
+  ],
+  
+  "contact": {
+    "email": "support@yourservice.com",
+    "website": "https://yourservice.com",
+    "docs": "https://docs.yourservice.com"
+  },
+  
+  "rate_limits": {
+    "requests_per_minute": 100,
+    "requests_per_day": 10000
+  },
+  
+  "x_custom": {
+    "additional_info": "Any service-specific metadata you want to include"
+  }
+}

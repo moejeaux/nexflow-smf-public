@@ -1,0 +1,60 @@
+{
+  "name": "NexFlow ACP Facilitator",
+  "url": "https://api.nexflowapp.app/acp/facilitator/status",
+  "description": "Virtuals Protocol ACP Facilitator service. Agent payment routing and settlement for AI agents. Handles job acceptance, payment processing, and on-chain settlement.",
+  "version": "1.0",
+  "provider": "nexflow",
+  "service_type": "payments",
+  
+  "capabilities": {
+    "x402": true,
+    "streaming": false,
+    "batch": true,
+    "async": true
+  },
+  
+  "payment_details": {
+    "payment_protocol": "x402",
+    "payment_url": "https://caas.nexflowapp.app/api/v1/facilitator/x402/verify",
+    "asset": "USDC",
+    "network": "base-mainnet",
+    "facilitator": "nexflow",
+    "scheme": "exact"
+  },
+  
+  "tags": [
+    "acp",
+    "virtuals",
+    "facilitator",
+    "payments",
+    "ai-agents",
+    "settlement",
+    "blockchain"
+  ],
+  
+  "contact": {
+    "email": "support@nexflowapp.app",
+    "website": "https://nexflowapp.app",
+    "docs": "https://docs.nexflowapp.app/acp"
+  },
+  
+  "supported_protocols": [
+    "virtuals-acp",
+    "x402",
+    "eip-3009"
+  ],
+  
+  "x_nexflow": {
+    "version": "1.0",
+    "payment": {
+      "protocol": "x402",
+      "url": "https://caas.nexflowapp.app/api/v1/facilitator/x402/verify",
+      "asset": "USDC",
+      "network": "base-mainnet",
+      "facilitator": "nexflow"
+    },
+    "operator": {
+      "dashboardUrl": "https://nexflowapp.app"
+    }
+  }
+}

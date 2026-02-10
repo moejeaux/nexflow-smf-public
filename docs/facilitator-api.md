@@ -20,7 +20,7 @@ All requests require an API key in the `X-Facilitator-Auth` header:
 X-Facilitator-Auth: your-nexflow-api-key
 ```
 
-Get your API key at [nexflowapp.app](https://nexflowapp.app).
+Sign up or log in at [nexflowapp.app](https://nexflowapp.app), go to **Developers → API Keys**, and click **Create API key**. Use that key with the examples in this repo.
 
 ---
 

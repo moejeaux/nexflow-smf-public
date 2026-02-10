@@ -4,6 +4,10 @@
 
 NexFlow SMF routes, verifies, and settles x402 micropayments on Base. It acts as an intelligent intermediary between payers and facilitators, selecting the optimal route based on cost, latency, and reliability. This repository contains the on-chain settlement contracts, TypeScript SDK, agent manifest specification, and integration examples.
 
+## 🎴 [Browse AgentCard Catalog →](./agentcards/)
+
+Discover AI agent services with x402 payment routing through NexFlow SMF. [Submit your service](./agentcards/SUBMISSION_GUIDE.md) to the catalog.
+
 ---
 
 ## 🎴 Browse AgentCard Catalog
@@ -105,7 +109,7 @@ const result = await smf.verify({
 | `NEXFLOW_API_KEY` | Yes | Your NexFlow API key (`nf_live_xxx` or `nf_test_xxx`) |
 | `NEXFLOW_BASE_URL` | No | Override API URL (default: `https://api.nexflowapp.app`) |
 
-Get your API key at [nexflowapp.app](https://nexflowapp.app).
+Sign up or log in at [nexflowapp.app](https://nexflowapp.app), go to **Developers → API Keys**, and click **Create API key**. Use that key with the examples in this repo.
 
 **Never commit API keys or secrets.** Use environment variables or a secrets manager.
 

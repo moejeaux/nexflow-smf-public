@@ -76,7 +76,7 @@ For the x402 facilitator endpoints, use the `X-Facilitator-Auth` header instead:
 X-Facilitator-Auth: nf_live_your_key_here
 ```
 
-Get your API key at [nexflowapp.app](https://nexflowapp.app).
+Sign up or log in at [nexflowapp.app](https://nexflowapp.app), go to **Developers → API Keys**, and click **Create API key**. Use that key with the examples in this repo.
 
 ---
 

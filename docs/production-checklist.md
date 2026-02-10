@@ -151,7 +151,7 @@ NexFlow API keys are injected at **build time** (Lambda@Edge doesn't support run
 
 ### Step-by-step
 
-1. **Generate a new key** in the [NexFlow dashboard](https://nexflowapp.app) — the old key stays active.
+1. **Generate a new key** — sign in at [nexflowapp.app](https://nexflowapp.app), go to **Developers → API Keys**, and click **Create API key**. The old key stays active.
 
 2. **Rebuild with the new key:**
    ```bash
@@ -176,7 +176,7 @@ NexFlow API keys are injected at **build time** (Lambda@Edge doesn't support run
 
 5. **Wait for CloudFront to fully deploy** (check the distribution status).
 
-6. **Revoke the old key** in the NexFlow dashboard once all edge locations are serving the new version.
+6. **Revoke the old key** in the Developers → API Keys page once all edge locations are serving the new version.
 
 ### Tips
 
