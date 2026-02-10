@@ -6,6 +6,14 @@ NexFlow SMF routes, verifies, and settles x402 micropayments on Base. It acts as
 
 ---
 
+## 🎴 Browse AgentCard Catalog
+
+Discover NexFlow services as AgentCards, ready for AI agents and x402-aware clients:
+
+https://nexflow-agentcards.pages.dev/
+
+---
+
 ## Choose Your Path
 
 ### **Monetize an existing API at the edge** (recommended)
