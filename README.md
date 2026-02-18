@@ -77,6 +77,7 @@ const result = await smf.verify({
 | [`contracts/`](./contracts/) | Solidity contracts for atomic batch settlement with Merkle proofs |
 | [`docs/`](./docs/) | API reference, facilitator contract, production checklist |
 | [`AGENT_MANIFEST_V1.md`](./AGENT_MANIFEST_V1.md) | Agent Manifest spec for machine-to-machine discovery |
+| [`nexflow-smf-skills/`](./nexflow-smf-skills/) | Cursor-style agent skills (route-matrix, quote, receipt, facilitators, health, simulate, budget) |
 | [`PRICING.md`](./PRICING.md) | Pricing model with example scenarios |
 
 ---
