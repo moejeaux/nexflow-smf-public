@@ -10,6 +10,22 @@ Discover AI agent services with x402 payment routing through NexFlow SMF. [Submi
 
 ---
 
+## 🧩 Skills (Cursor & AI agents)
+
+Canonical list of NexFlow SMF skills. Each skill has a **SKILL.md** (for Cursor/agents) and lives in [`nexflow-smf-skills/`](./nexflow-smf-skills/). Machine-readable manifest: [**skills-manifest.json**](./skills-manifest.json) · API: `GET https://api.nexflowapp.app/.well-known/skills` (redirects to manifest).
+
+| Skill | Description |
+|-------|--------------|
+| [**List Facilitators**](./nexflow-smf-skills/smf-list-facilitators/) | Discover active x402 facilitators by network/asset before quoting or paying. |
+| [**Route Matrix**](./nexflow-smf-skills/smf-route-matrix/) | Compare priced routes (fees, latency) across facilitators for USDC on Base. |
+| [**Route Quote**](./nexflow-smf-skills/smf-route-quote/) | Get a single priced quote for a chosen facilitator before committing. |
+| [**Settlement Receipt**](./nexflow-smf-skills/smf-settlement-receipt/) | Fetch a settlement receipt for a completed x402 payment for logs or audits. |
+| [**Healthcheck**](./nexflow-smf-skills/smf-healthcheck/) | Ping NexFlow SMF for status and latency before routing payments. |
+| [**Simulate Charge**](./nexflow-smf-skills/smf-simulate-charge/) | See x402 pricing headers without performing a real payment. |
+| [**Budget Plan**](./nexflow-smf-skills/smf-budget-plan/) | Turn a USDC budget into an approximate number of SMF API calls. |
+
+---
+
 ## 🎴 Browse AgentCard Catalog
 
 Discover NexFlow services as AgentCards, ready for AI agents and x402-aware clients:
@@ -186,6 +202,7 @@ MIT License — see [LICENSE](./LICENSE) for details.
 
 - **Website**: [nexflowapp.app](https://nexflowapp.app)
 - **API**: [api.nexflowapp.app](https://api.nexflowapp.app)
+- **Skills manifest** (machine-readable): [skills-manifest.json](./skills-manifest.json) · [api.nexflowapp.app/.well-known/skills](https://api.nexflowapp.app/.well-known/skills)
 - **Agent Manifest**: [api.nexflowapp.app/.well-known/agent-manifest](https://api.nexflowapp.app/.well-known/agent-manifest)
 - **SDK on npm**: [@nexflow-smf/smf](https://www.npmjs.com/package/@nexflow-smf/smf)
 - **Settlement Contract**: [BaseScan](https://basescan.org/address/0x43A04228152115fDd5663B2Aa559Ebd84D17A49D)

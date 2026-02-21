@@ -1,0 +1,49 @@
+{
+  "version": "1.0",
+  "description": "NexFlow SMF skills for Cursor and AI agents. Use with SKILL.md in each folder.",
+  "source": "https://github.com/moejeaux/nexflow-smf-public",
+  "skills": [
+    {
+      "id": "smf-list-facilitators",
+      "name": "List Facilitators",
+      "description": "Discover active x402 facilitators from NexFlow SMF by network/asset before quoting or paying.",
+      "url": "https://github.com/moejeaux/nexflow-smf-public/tree/main/nexflow-smf-skills/smf-list-facilitators"
+    },
+    {
+      "id": "smf-route-matrix",
+      "name": "Route Matrix",
+      "description": "Compare priced routes (fees, latency) across facilitators for USDC on Base.",
+      "url": "https://github.com/moejeaux/nexflow-smf-public/tree/main/nexflow-smf-skills/smf-route-matrix"
+    },
+    {
+      "id": "smf-route-quote",
+      "name": "Route Quote",
+      "description": "Get a single priced quote for a chosen facilitator before committing.",
+      "url": "https://github.com/moejeaux/nexflow-smf-public/tree/main/nexflow-smf-skills/smf-route-quote"
+    },
+    {
+      "id": "smf-settlement-receipt",
+      "name": "Settlement Receipt",
+      "description": "Fetch a settlement receipt for a completed x402 payment for logs or audits.",
+      "url": "https://github.com/moejeaux/nexflow-smf-public/tree/main/nexflow-smf-skills/smf-settlement-receipt"
+    },
+    {
+      "id": "smf-healthcheck",
+      "name": "Healthcheck",
+      "description": "Ping NexFlow SMF for status and latency before routing payments.",
+      "url": "https://github.com/moejeaux/nexflow-smf-public/tree/main/nexflow-smf-skills/smf-healthcheck"
+    },
+    {
+      "id": "smf-simulate-charge",
+      "name": "Simulate Charge",
+      "description": "See x402 pricing headers without performing a real payment.",
+      "url": "https://github.com/moejeaux/nexflow-smf-public/tree/main/nexflow-smf-skills/smf-simulate-charge"
+    },
+    {
+      "id": "smf-budget-plan",
+      "name": "Budget Plan",
+      "description": "Turn a USDC budget into an approximate number of SMF API calls.",
+      "url": "https://github.com/moejeaux/nexflow-smf-public/tree/main/nexflow-smf-skills/smf-budget-plan"
+    }
+  ]
+}
