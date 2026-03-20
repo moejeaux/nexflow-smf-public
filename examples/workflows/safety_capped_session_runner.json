@@ -1,0 +1,114 @@
+{
+  "name": "Safety-Capped Session Runner",
+  "description": "Create a session with a budget, check a planned charge against that budget, process the charge, configure a 90% budget alert, and return session status.",
+  "public": true,
+  "inputSchema": {
+    "type": "object",
+    "required": ["requestedBudget", "plannedCost"],
+    "properties": {
+      "requestedBudget": {
+        "type": "object",
+        "required": ["amount", "currency"],
+        "properties": {
+          "amount": { "type": "number", "description": "Budget amount in minor units (e.g. 500000 = 0.50 USDC)" },
+          "currency": { "type": "string", "enum": ["USDC"], "description": "Currency code" }
+        }
+      },
+      "plannedCost": {
+        "type": "object",
+        "required": ["amount", "currency"],
+        "properties": {
+          "amount": { "type": "number", "description": "Planned charge amount in minor units" },
+          "currency": { "type": "string", "enum": ["USDC"], "description": "Currency code" }
+        }
+      },
+      "labels": {
+        "type": "object",
+        "additionalProperties": { "type": "string" },
+        "description": "Optional key-value labels to attach to the session"
+      }
+    }
+  },
+  "steps": [
+    {
+      "stepId": "create_session",
+      "type": "nexflow.smf.operation",
+      "operationId": "create_session",
+      "paramsMapping": {
+        "session_type": "metered",
+        "budget": "$input.requestedBudget.amount",
+        "config": {
+          "currency": "$input.requestedBudget.currency",
+          "labels": "$input.labels"
+        }
+      }
+    },
+    {
+      "stepId": "budget_check",
+      "type": "nexflow.smf.operation",
+      "operationId": "budget_check",
+      "paramsMapping": {
+        "pending_charges": [
+          {
+            "caller_id": "$prev.create_session.session_id",
+            "amount": "$input.plannedCost.amount",
+            "operation_id": "process_charges"
+          }
+        ],
+        "budget_limits": {
+          "session_cap": "$input.requestedBudget.amount"
+        }
+      }
+    },
+    {
+      "stepId": "process_charges",
+      "type": "nexflow.smf.operation",
+      "operationId": "process_charges",
+      "paramsMapping": {
+        "charges": [
+          {
+            "caller_id": "$prev.create_session.session_id",
+            "amount": "$input.plannedCost.amount",
+            "currency": "$input.plannedCost.currency",
+            "operation_id": "workflow_step",
+            "description": "Planned charge from Safety-Capped Session Runner"
+          }
+        ],
+        "settlement_mode": "immediate"
+      }
+    },
+    {
+      "stepId": "configure_alerts",
+      "type": "nexflow.smf.operation",
+      "operationId": "configure_alerts",
+      "paramsMapping": {
+        "rules": [
+          {
+            "type": "budget_threshold",
+            "condition": {
+              "threshold_pct": 90,
+              "session_id": "$prev.create_session.session_id"
+            },
+            "notification_channels": ["audit_log"]
+          }
+        ]
+      }
+    },
+    {
+      "stepId": "monitor_sessions",
+      "type": "nexflow.smf.operation",
+      "operationId": "monitor_sessions",
+      "paramsMapping": {
+        "caller_ids": "$prev.create_session.session_id"
+      }
+    }
+  ],
+  "pricing": {
+    "billingMode": "per_call",
+    "markupBps": 300
+  },
+  "revShare": {
+    "creatorWallet": "0xCREATOR_WALLET_PLACEHOLDER",
+    "creatorShareBps": 0
+  }
+}

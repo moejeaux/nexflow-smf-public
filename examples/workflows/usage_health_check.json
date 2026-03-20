@@ -1,0 +1,71 @@
+{
+  "name": "Usage Health Check",
+  "description": "Return a usage health report for a caller or session: recent spend timeseries, budget status, and active alerts.",
+  "public": true,
+  "inputSchema": {
+    "type": "object",
+    "required": ["scope"],
+    "properties": {
+      "scope": {
+        "type": "object",
+        "required": ["type", "id"],
+        "properties": {
+          "type": { "type": "string", "enum": ["caller", "session"], "description": "Whether to scope by caller or session" },
+          "id": { "type": "string", "description": "The caller ID or session ID to look up" }
+        }
+      },
+      "windowHours": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 168,
+        "default": 24,
+        "description": "How many hours of history to include (default 24, max 168 = 1 week)"
+      }
+    }
+  },
+  "steps": [
+    {
+      "stepId": "usage_timeseries",
+      "type": "nexflow.smf.operation",
+      "operationId": "usage_timeseries",
+      "paramsMapping": {
+        "caller_id": "$input.scope.id",
+        "session_id": "$input.scope.id",
+        "start": "$computed.windowStart",
+        "end": "$computed.now",
+        "frequency": "hourly"
+      }
+    },
+    {
+      "stepId": "budget_check",
+      "type": "nexflow.smf.operation",
+      "operationId": "budget_check",
+      "paramsMapping": {
+        "pending_charges": [
+          {
+            "caller_id": "$input.scope.id",
+            "amount": 0,
+            "operation_id": "health_check_probe"
+          }
+        ],
+        "budget_limits": {
+          "daily_cap": 1000000
+        }
+      }
+    },
+    {
+      "stepId": "monitor_alerts",
+      "type": "nexflow.smf.operation",
+      "operationId": "monitor_alerts",
+      "paramsMapping": {}
+    }
+  ],
+  "pricing": {
+    "billingMode": "per_call",
+    "markupBps": 500
+  },
+  "revShare": {
+    "creatorWallet": "0xCREATOR_WALLET_PLACEHOLDER",
+    "creatorShareBps": 0
+  }
+}

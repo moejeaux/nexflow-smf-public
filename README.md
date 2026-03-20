@@ -8,6 +8,16 @@ NexFlow SMF routes, verifies, and settles x402 micropayments on Base. It acts as
 
 Discover AI agent services with x402 payment routing through NexFlow SMF. [Submit your service](./agentcards/SUBMISSION_GUIDE.md) to the catalog.
 
+## 📦 What's Included
+
+| Component | Description |
+|-----------|-------------|
+| `contracts/` | Solidity contracts for atomic batch settlement with Merkle proof verification |
+| `sdk/` | Zero-dependency TypeScript SDK (`@nexflow-smf/smf`) for routing, verification, and settlement |
+| `examples/` | Ready-to-run examples demonstrating common integration patterns |
+| `examples/workflows/` | JSON workflow definitions for the NexFlow SMF workflow host |
+| `examples/client/` | Minimal TypeScript clients showing the 402 → pay → retry pattern |
+
 ---
 
 ## 🧩 Skills (Cursor & AI agents)
@@ -119,12 +129,168 @@ const result = await smf.verify({
 
 ---
 
+## 🔄 Agent Workflows
+
+NexFlow SMF allows agents to define, publish, and monetize **hosted workflows** — multi-step compositions of core SMF operations that other agents can invoke via the 402/MPP payment gateway.
+
+- **Workflow creation and inspection are free.**
+- **Workflow invocation is paid** — the price is computed from the sum of step costs plus a creator-defined markup.
+- Workflow creators earn rev-share on every invocation.
+
+### Available Core Operations
+
+Workflows can compose any of these paid SMF operations:
+
+| Operation | Description |
+|-----------|-------------|
+| `create_session` | Create a metered session with a budget |
+| `budget_check` | Check planned charges against budgets |
+| `budget_diagnostics` | Analyze sessions for overrun risk |
+| `process_charges` | Deduct charges from a session or caller |
+| `verify_payment` | Validate a payment descriptor |
+| `settle_batch` | Settle a batch of transactions |
+| `revenue_share` | Record revenue-share accounting for a period |
+| `route_quote` | Get a payment routing quote |
+| `usage_timeseries` | Time-series spend data for a caller/session |
+| `configure_alerts` | Set budget/usage alert thresholds |
+| `monitor_sessions` | List sessions with budget & spend status |
+| `monitor_alerts` | Return triggered budget/usage alerts |
+| `pricing_estimate` | Estimate cost of a set of operations |
+
+### Example Workflows
+
+#### Safety-Capped Session Runner
+
+[`examples/workflows/safety_capped_session_runner.json`](./examples/workflows/safety_capped_session_runner.json)
+
+A 5-step workflow that:
+1. Creates a session with a requested budget
+2. Checks a planned charge against that budget
+3. Processes the charge
+4. Configures a 90% budget alert
+5. Returns current session status
+
+#### Usage Health Check
+
+[`examples/workflows/usage_health_check.json`](./examples/workflows/usage_health_check.json)
+
+A 3-step diagnostic workflow that:
+1. Pulls recent spend timeseries (hourly, configurable window)
+2. Checks budget status (zero-cost probe)
+3. Returns active alerts
+
+#### Batch Settlement Runner
+
+[`examples/workflows/revenue_share_settlement.json`](./examples/workflows/revenue_share_settlement.json)
+
+A 5-step workflow demonstrating the full payment lifecycle:
+1. Creates a settlement session with a budget
+2. Checks that planned charges fit within the budget
+3. Processes a batch of charges
+4. Settles the batch
+5. Returns final session status
+
+The workflow creator earns their standard rev-share (set via `creatorShareBps`) on every invocation. Rev-share credits accumulate per wallet and are batched for payout when they reach $5+.
+
+Input example:
+```json
+{
+  "sessionBudget": { "amount": 2000000, "currency": "USDC" },
+  "charges": [
+    { "callerId": "agent_a", "amount": 500000, "description": "API usage week 12" },
+    { "callerId": "agent_b", "amount": 300000, "description": "Compute usage week 12" }
+  ],
+  "settlementPeriod": "2026-03-01/2026-03-31"
+}
+```
+
+### How to Register a Workflow
+
+```bash
+# Register the Safety-Capped Session Runner
+curl -X POST "$NEXFLOW_SMF_BASE_URL/nexflow/workflows" \
+  -H "Content-Type: application/json" \
+  -H "X-Caller-Id: demo_caller" \
+  --data-binary "@examples/workflows/safety_capped_session_runner.json"
+```
+
+Response:
+```json
+{
+  "workflowId": "wf_abc123_1",
+  "name": "Safety-Capped Session Runner",
+  "invokeUrl": "/nexflow/workflows/wf_abc123_1/invoke",
+  "status": "active",
+  "steps": 5,
+  "pricing": { "billingMode": "per_call", "markupBps": 300 }
+}
+```
+
+### How to Invoke a Workflow
+
+```bash
+# First call — no payment proof → 402 Payment Required
+curl -X POST "$NEXFLOW_SMF_BASE_URL/nexflow/workflows/wf_abc123_1/invoke" \
+  -H "Content-Type: application/json" \
+  -H "X-Caller-Id: demo_caller" \
+  --data '{
+    "requestedBudget": { "amount": 500000, "currency": "USDC" },
+    "plannedCost": { "amount": 50000, "currency": "USDC" }
+  }'
+```
+
+The first call returns **HTTP 402** with a payment challenge:
+```json
+{
+  "object": "payment_challenge",
+  "operation": "workflow_invoke",
+  "workflow_id": "wf_abc123_1",
+  "required_amount": 17350,
+  "currency": "usdc",
+  "price_breakdown": {
+    "totalPrice": 17350,
+    "baseCost": 7000,
+    "markup": 210,
+    "platformFee": 149
+  },
+  "instructions": "Pay via MPP using the challenge above, then retry with X-PAYMENT-PROOF header."
+}
+```
+
+After the agent pays (via Tempo MPP or x402), it retries with the proof:
+
+```bash
+# Second call — with valid proof → 200 OK
+curl -X POST "$NEXFLOW_SMF_BASE_URL/nexflow/workflows/wf_abc123_1/invoke" \
+  -H "Content-Type: application/json" \
+  -H "X-Caller-Id: demo_caller" \
+  -H "X-PAYMENT-PROOF: <base64-encoded-proof-json>" \
+  --data '{
+    "requestedBudget": { "amount": 500000, "currency": "USDC" },
+    "plannedCost": { "amount": 50000, "currency": "USDC" }
+  }'
+```
+
+### TypeScript Client Example
+
+See [`examples/client/invokeUsageHealthCheck.ts`](./examples/client/invokeUsageHealthCheck.ts) for a runnable demo of the full 402 → proof → retry flow.
+
+```bash
+export NEXFLOW_SMF_BASE_URL=http://localhost:3001
+export WORKFLOW_ID=wf_abc123_1
+npx tsx examples/client/invokeUsageHealthCheck.ts
+```
+
+---
+
 ## Environment Variables
 
 | Variable | Required | Description |
 |----------|----------|-------------|
 | `NEXFLOW_API_KEY` | Yes | Your NexFlow API key (`nf_live_xxx` or `nf_test_xxx`) |
 | `NEXFLOW_BASE_URL` | No | Override API URL (default: `https://api.nexflowapp.app`) |
+| `NEXFLOW_SMF_BASE_URL` | No | NexFlow SMF bridge URL for workflow invocations (default: `http://localhost:3001`) |
+| `WORKFLOW_ID` | No | Workflow ID for the client example scripts |
 
 Sign up or log in at [nexflowapp.app](https://nexflowapp.app), go to **Developers → API Keys**, and click **Create API key**. Use that key with the examples in this repo.
 

@@ -1,0 +1,107 @@
+{
+  "name": "Batch Settlement Runner",
+  "description": "Full payment lifecycle: create a session with a budget, process a batch of charges, settle the batch, and return final session status. The workflow creator earns their standard rev-share on every invocation.",
+  "public": true,
+  "inputSchema": {
+    "type": "object",
+    "required": ["sessionBudget", "charges"],
+    "properties": {
+      "sessionBudget": {
+        "type": "object",
+        "required": ["amount", "currency"],
+        "properties": {
+          "amount": { "type": "number", "description": "Total session budget in minor units (e.g. 1000000 = 1.00 USDC)" },
+          "currency": { "type": "string", "enum": ["USDC"] }
+        }
+      },
+      "charges": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "type": "object",
+          "required": ["callerId", "amount", "description"],
+          "properties": {
+            "callerId": { "type": "string", "description": "Caller or agent being charged" },
+            "amount": { "type": "number", "description": "Charge amount in minor units" },
+            "currency": { "type": "string", "enum": ["USDC"], "default": "USDC" },
+            "description": { "type": "string", "description": "Human-readable reason for the charge" }
+          }
+        },
+        "description": "One or more charges to process in this batch"
+      },
+      "settlementPeriod": {
+        "type": "string",
+        "description": "ISO date range label for the settlement period (e.g. '2026-03-01/2026-03-31')",
+        "default": "current"
+      }
+    }
+  },
+  "steps": [
+    {
+      "stepId": "create_session",
+      "type": "nexflow.smf.operation",
+      "operationId": "create_session",
+      "paramsMapping": {
+        "session_type": "settlement_batch",
+        "budget": "$input.sessionBudget.amount",
+        "config": {
+          "currency": "$input.sessionBudget.currency",
+          "labels": {
+            "workflow": "batch_settlement_runner",
+            "period": "$input.settlementPeriod"
+          }
+        }
+      }
+    },
+    {
+      "stepId": "budget_check",
+      "type": "nexflow.smf.operation",
+      "operationId": "budget_check",
+      "paramsMapping": {
+        "pending_charges": "$input.charges",
+        "budget_limits": {
+          "session_cap": "$input.sessionBudget.amount"
+        }
+      }
+    },
+    {
+      "stepId": "process_charges",
+      "type": "nexflow.smf.operation",
+      "operationId": "process_charges",
+      "paramsMapping": {
+        "charges": "$input.charges",
+        "settlement_mode": "batched"
+      }
+    },
+    {
+      "stepId": "settle_batch",
+      "type": "nexflow.smf.operation",
+      "operationId": "settle_batch",
+      "paramsMapping": {
+        "session_id": "$prev.create_session.session_id",
+        "start": "$computed.periodStart",
+        "end": "$computed.periodEnd",
+        "params": {
+          "transaction_ids": "$prev.process_charges.transaction_ids",
+          "total_value": "$prev.process_charges.total_charged"
+        }
+      }
+    },
+    {
+      "stepId": "monitor_sessions",
+      "type": "nexflow.smf.operation",
+      "operationId": "monitor_sessions",
+      "paramsMapping": {
+        "caller_ids": "$prev.create_session.session_id"
+      }
+    }
+  ],
+  "pricing": {
+    "billingMode": "per_call",
+    "markupBps": 400
+  },
+  "revShare": {
+    "creatorWallet": "0xCREATOR_WALLET_PLACEHOLDER",
+    "creatorShareBps": 200
+  }
+}
